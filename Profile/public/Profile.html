@@ -17,29 +17,29 @@
         alt="User Profile Photo"
       />
       <!-- Name -->
-      <h2 class="text-2xl font-bold text-gray-800">John Doe</h2>
+      <h2 id="name" class="text-2xl font-bold text-gray-800">John Doe</h2>
 
       <!-- Info List -->
       <div class="mt-6 space-y-4 w-full">
         <!-- Mobile -->
         <div class="flex items-center justify-between">
           <span class="text-gray-600 font-medium">📞 Mobile:</span>
-          <span class="text-gray-800">+91 9876543210</span>
+          <span id="mobile" class="text-gray-800">+91 9876543210</span>
         </div>
         <!-- Email -->
         <div class="flex items-center justify-between">
           <span class="text-gray-600 font-medium">📧 Email:</span>
-          <span class="text-gray-800">johndoe@example.com</span>
+          <span id="email" class="text-gray-800">johndoe@example.com</span>
         </div>
         <!-- College -->
         <div class="flex items-center justify-between">
           <span class="text-gray-600 font-medium">🎓 College:</span>
-          <span class="text-gray-800">MNNIT Allahabad</span>
+          <span id="college"  class="text-gray-800">MNNIT Allahabad</span>
         </div>
         <!-- Address -->
         <div class="flex items-center justify-between">
           <span class="text-gray-600 font-medium">🏠 Address:</span>
-          <span class="text-gray-800 mt-1">123, Main Street,<br/>New Delhi, India</span>
+          <span id="address" class="text-gray-800 mt-1">123, Main Street,<br/>New Delhi, India</span>
         </div>
       </div>
 
@@ -49,7 +49,26 @@
       </button></a>
     </div>
   </div>
-
+  <script>
+    fetch("/api/profile")
+      .then((res) => res.json())
+      .then((data) => {
+        document.getElementById("name").textContent = data.name;
+        document.getElementById("mobile").textContent = data.mobile;
+        document.getElementById("email").textContent = data.email;
+        document.getElementById("college").textContent = data.college;
+        document.getElementById("address").textContent = data.address;
+  
+        // Optional: update profile image if stored
+        if (data.photo && document.querySelector("img")) {
+          document.querySelector("img").src = data.photo;
+        }
+      })
+      .catch((err) => {
+        console.error("Failed to load profile", err);
+      });
+  </script>
+  
 </body>
 </html>
 
