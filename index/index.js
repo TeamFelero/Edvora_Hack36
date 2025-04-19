@@ -209,6 +209,11 @@ app.post("/submitLog", async (req, res) => {
 // Password Reset (post-OTP)
 app.post("/create", (req, res) => {
   console.log(req.body); // You can update the password here
+  if(req.body.newPass !== req.body.confPass) {
+    alert("Password Not Matching!!!");
+    res.sendFile(path.join(__dirname, "public", "createPassword.html"));
+  }
+  res.sendFile(path.join(__dirname, "public", "loginSignup.html"));
 });
 
 // Review
