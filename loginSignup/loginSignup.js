@@ -112,9 +112,12 @@ app.get("/forget", (req, res) => {
 
 // Signup + OTP
 let genOtp;
+let signup;
+let forPass;
 
 app.post("/submitSig", async (req, res) => {
   const { username, email, password, conPassword } = req.body;
+  signup = true;
 
   if (!username || !email || !password || password !== conPassword) {
     return res.status(400).send("Invalid signup details");
@@ -145,6 +148,8 @@ app.post("/submitSig", async (req, res) => {
 
 app.post("/forget", async (req, res) => {
     const mail = req.body.email;
+    forPass = true;
+
     console.log(mail);
     var Otp = new otp();
     genOtp = Otp.totp();
@@ -171,13 +176,14 @@ app.post("/forget", async (req, res) => {
 });
 
 app.post("/otpVerify", async (req, res) => {
-  const { OTP } = req.body;
-  if (OTP === genOtp && req.session.pendingUser) {
+  const otpCurr = req.body.OTP;
+  if (otpCurr === genOtp) {
     try {
       const newUser = new User(req.session.pendingUser);
       await newUser.save();
       delete req.session.pendingUser;
-      res.redirect("/");
+      if(signup === true) res.redirect("/");
+      else res.sendFile(__dirname + "/public/createPassword.html");
     } catch (err) {
       res.status(500).send("Error saving user after OTP");
     }
@@ -204,6 +210,11 @@ app.post("/submitLog", async (req, res) => {
   } catch (err) {
     res.status(500).send("Server error during login");
   }
+});
+
+// New Password
+app.post("/create", (req, res) => {
+  console.log(req.body);
 });
 
 app.listen(port, () => {
