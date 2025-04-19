@@ -28,10 +28,9 @@
             <div class="hidden md:flex space-x-6 items-center">
                 <a href="#" class="nav-link">Home</a>
                 <a href="#" class="nav-link">About</a>
-
-                <a href="./loginSignup.html" class="nav-link">Login</a>
-
-
+                <a href="#" class="nav-link">Services</a>
+                <a href="#" class="nav-link">Login</a>
+                <a href="#" class="nav-link">Find</a>
             </div>
 
             <!-- Hamburger -->
@@ -49,11 +48,9 @@
         <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 flex flex-col space-y-2">
             <a href="#" class="nav-link">Home</a>
             <a href="#" class="nav-link">About</a>
-
-            <!-- <a href="#" class="nav-link">Services</a> -->
+            <a href="#" class="nav-link">Services</a>
             <a href="#" class="nav-link">Login</a>
-            <!-- <a href="#" class="nav-link">Find</a> -->
-
+            <a href="#" class="nav-link">Find</a>
         </div>
     </nav>
 
@@ -128,7 +125,38 @@
 
                 </div>
             </section>
-
+            <script>
+              const apiKey = "pub_81559ded11d25191d0aa202882e07a95f57c8";
+              const endpoint = `https://newsdata.io/api/1/news?apikey=${apiKey}&q=college&language=en`;
+          
+              fetch(endpoint)
+                .then(response => response.json())
+                .then(data => {
+                  const container = document.getElementById("news-container");
+                  container.innerHTML = "";
+          
+                  if (data.results && data.results.length > 0) {
+                    data.results.forEach(article => {
+                      const newsCard = document.createElement("div");
+                      newsCard.className = "news-card";
+          
+                      newsCard.innerHTML = `
+                        <h2><a href="${article.link}" target="_blank">${article.title}</a></h2>
+                        <p>${article.description || "No description available."}</p>
+                        <small><strong>Source:</strong> ${article.source_id || "Unknown"}</small>
+                      `;
+          
+                      container.appendChild(newsCard);
+                    });
+                  } else {
+                    container.innerHTML = "No news found.";
+                  }
+                })
+                .catch(error => {
+                  document.getElementById("news-container").innerHTML = "Failed to load news.";
+                  console.error("Error fetching news:", error);
+                });
+            </script>
 
             <!-- reviews -->
             <section id="Review" class="p-6 bg-gray-100 text-gray-800 hidden">
