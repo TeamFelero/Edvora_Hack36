@@ -13,7 +13,7 @@
     <div class="review-container bg-gray-100 flex items-center justify-center min-h-screen">
         <div id="reviewCard" class="card bg-white p-8 rounded-lg shadow-md flex flex-col justify-center max-w-md w-full">
             <h2 class="text-2xl font-bold mb-6 text-center">Add Your Review</h2>
-            <form action="/submit-review" method="POST">
+            <form action="/subRev" method="POST">
                 
                 <!-- Username -->
                 <div class="mb-6">
@@ -21,28 +21,17 @@
                     <input name="username" type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" placeholder="Your Username" required />
                 </div>
 
-                <!-- Subjects -->
+                <!-- College Name -->
                 <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2">Subjects</label>
-                    <input name="subjects" type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" placeholder="Subjects you are reviewing" required />
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Institute Name</label>
+                    <input name="institute" type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" placeholder="Name of your Institute" required />
                 </div>
 
-                <!-- Rating (Stars) -->
+                <!-- Subjects -->
                 <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2">Collage Rating</label>
-                    <div class="flex items-center">
-                        <!-- Star 1 -->
-                        <div class="star cursor-pointer text-2xl text-gray-400" data-star="1">&#9733;</div>
-                        <!-- Star 2 -->
-                        <div class="star cursor-pointer text-2xl text-gray-400" data-star="2">&#9733;</div>
-                        <!-- Star 3 -->
-                        <div class="star cursor-pointer text-2xl text-gray-400" data-star="3">&#9733;</div>
-                        <!-- Star 4 -->
-                        <div class="star cursor-pointer text-2xl text-gray-400" data-star="4">&#9733;</div>
-                        <!-- Star 5 -->
-                        <div class="star cursor-pointer text-2xl text-gray-400" data-star="5">&#9733;</div>
-                    </div>
-                </div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Subject</label>
+                    <input name="subject" type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" placeholder="Subjects you are reviewing" required />
+                </div>  
 
                 <!-- Review Text -->
                 <div class="mb-6">
@@ -55,38 +44,6 @@
             </form>
         </div>
     </div>
-
-    <script>
-        // Get all stars
-        const stars = document.querySelectorAll('.star');
-        let selectedRating = 0; // This will store the selected rating
-
-        // Handle click event to set rating
-        stars.forEach(star => {
-            star.addEventListener('click', () => {
-                // Get the value of the clicked star (1 to 5)
-                selectedRating = parseInt(star.getAttribute('data-star'));
-
-                // Light up the stars up to the clicked star
-                updateStars(selectedRating);
-                console.log("Selected Rating: " + selectedRating);  // Log selected rating
-            });
-        });
-
-        // Update the star colors based on the rating
-        function updateStars(rating) {
-            stars.forEach(star => {
-                const starValue = parseInt(star.getAttribute('data-star'));
-                if (starValue <= rating) {
-                    star.classList.remove('text-gray-400');  // Remove gray
-                    star.classList.add('text-yellow-500');   // Add yellow for lit stars
-                } else {
-                    star.classList.remove('text-yellow-500'); // Remove yellow
-                    star.classList.add('text-gray-400');      // Add gray for unlit stars
-                }
-            });
-        }
-    </script>
 </body>
 
 </html>
