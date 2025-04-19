@@ -16,6 +16,10 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + "/public/loginSignup.html");
 });
 
+app.get("/forget", (req, res) => {
+    res.sendFile(__dirname + "/public/forgotPassword.html");
+});
+
 var genOtp;
 
 app.post("/submitLog", (req, res) => {
@@ -36,7 +40,7 @@ app.post("/submitSig", async (req, res) => {
             to: mail,
             subject: "Otp Verification",
             text: "For verification",
-            html: `<h1>Otp Verification!</h1><p>Thanks for logging into Edvora. Your vetification code is ${genOtp}</p>`,
+            html: `<h1>Otp Verification!</h1><p>Thanks for Visiting Edvora. Your vetification code is ${genOtp}</p>`,
         });
         console.log("Email sent to", mail);
     } catch (error) {
