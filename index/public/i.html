@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leapp for Colleges</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+
+
+  <style>
+/* Add to your global stylesheet */
+.perspective {
+  perspective: 1000px;
+}
+
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+  </style>
+</head>
+
+<body class="m-0 font-sans bg-gradient-to-r from-[#121212] to-[#1e1e1e] text-white">
+
+  <!-- Navbar -->
+  <nav class="bg-[#c0c0c0]/40 backdrop-blur-md shadow-md rounded-3xl max-w-[85%] mt-5 mx-auto px-4 mb-3">
+    <div class="max-w-7xl mx-auto py-4 flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center space-x-2 text-2xl font-bold text-white">
+        <img src="./assets/logo2.png" alt="Logo" class="h-14">
+        <div>Edvora</div>
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex space-x-6 items-center">
+        <a href="#" class="nav-link">Home</a>
+        <a href="#" class="nav-link">About</a>
+        <a href="#" class="nav-link">Services</a>
+        <a href="#" class="nav-link">Login</a>
+        <a href="#" class="nav-link">Find</a>
+      </div>
+
+      <!-- Hamburger -->
+      <div class="md:hidden">
+        <button id="menu-toggle">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 flex flex-col space-y-2">
+      <a href="#" class="nav-link">Home</a>
+      <a href="#" class="nav-link">About</a>
+      <a href="#" class="nav-link">Services</a>
+      <a href="#" class="nav-link">Login</a>
+      <a href="#" class="nav-link">Find</a>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="flex flex-col md:flex-row min-h-screen">
+    <!-- Sidebar -->
+    <aside class="w-full md:w-[400px] p-8 md:p-12 bg-black">
+      <h1 class="text-xl text-white mb-4">EDVORA</h1>
+      <h2 class="text-4xl text-gray-300 leading-snug">
+        Home Page<br>For <span class="text-gray-400">Leapp for</span><br>
+        <strong class="text-white font-bold">Colleges</strong>
+      </h2>
+      <p class="text-gray-400 mt-4 mb-8">
+        We’re your wheelhouse for Colleges for save, lead youth...
+      </p>
+      <button
+        class="bg-pink-500 text-white px-6 py-3 rounded-lg font-bold transition-transform duration-300 hover:scale-105">
+        Search Program
+      </button>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 bg-gray-100 text-gray-800 p-8 rounded-t-[30px] md:rounded-l-[30px] w-full">
+      <!-- Top Nav -->
+      <header class="flex flex-wrap justify-between gap-4 mb-8">
+        <nav class="flex flex-wrap space-x-4">
+          <a href="#" class="text-pink-500 font-medium">Colleges</a>
+          <a href="#" class="text-gray-600 font-medium">News</a>
+          <a href="#" class="text-gray-600 font-medium">Reviews</a>
+          <a href="#" class="text-gray-600 font-medium">Chat</a>
+        </nav>
+        <div class="space-x-4">
+          <button class="bg-gradient-to-r from-red-500 to-yellow-500 text-white px-4 py-2 rounded-lg">On</button>
+          <button class="bg-gradient-to-r from-red-500 to-yellow-500 text-white px-4 py-2 rounded-lg">Profile</button>
+        </div>
+      </header>
+
+      <!-- Search Section -->
+      <section class="mb-8">
+        <div class="relative w-full">
+          <input type="text" placeholder="Search Colleges..."
+            class="w-full py-3 pl-4 pr-12 rounded-xl border-none focus:ring-2 focus:ring-pink-400 focus:outline-none text-gray-800" />
+          <button
+            class="absolute top-1/2 right-3 transform -translate-y-1/2 bg-pink-500 hover:bg-pink-600 p-2 rounded-full transition duration-300">
+            <img src="./assets/search.png" alt="Search" class="h-5 w-5" />
+          </button>
+        </div>
+      </section>
+
+      <!-- Cards Section -->
+      <section class="flex flex-wrap gap-6 justify-center md:justify-start">
+        <!-- Card 1 -->
+        <div class="w-full max-w-sm mx-auto perspective">
+            <div class="relative w-full h-[400px] transform-style-preserve-3d" id="card">
+              <!-- Front Side -->
+              <div class="absolute w-full h-full backface-hidden bg-white rounded-2xl shadow-lg overflow-hidden text-center flex flex-col items-center justify-center">
+                <img src="https://www.iitd.ac.in/sites/default/files/logo_0.png" alt="College Image"
+                     class="h-32 w-32 object-contain mb-4" />
+                <h2 class="text-xl font-bold text-pink-600">IIT Delhi</h2>
+              </div>
+          
+              <!-- Back Side -->
+              <div class="absolute w-full h-full backface-hidden bg-white rounded-2xl shadow-lg p-6 text-gray-800 rotate-y-180 overflow-y-auto">
+                
+          
+                <!-- Name -->
+                <h2 class="text-xl font-bold text-pink-600 mb-2">John Doe</h2>
+          
+                <!-- Info -->
+                <div class="mb-2"><span class="font-semibold">College:</span> IIT Delhi</div>
+                <div class="mb-2"><span class="font-semibold">Website:</span>
+                  <a href="https://www.iitd.ac.in" target="_blank" class="text-blue-600 hover:underline">www.iitd.ac.in</a>
+                </div>
+                <div class="mb-2"><span class="font-semibold">State:</span> Delhi</div>
+                <div class="mb-2"><span class="font-semibold">Country:</span> India</div>
+                <div class="mb-2"><span class="font-semibold">Address:</span> Hauz Khas, New Delhi, Delhi 110016</div>
+                <div class="mb-2"><span class="font-semibold">Contact:</span> +91 9876543210</div>
+                <div class="mb-2"><span class="font-semibold">Email:</span> john.doe@example.com</div>
+              </div>
+            </div>
+          </div>
+          
+          
+          
+          
+
+        <!-- Card 2 -->
+        <div class="bg-white text-gray-800 rounded-2xl shadow-lg p-6 w-full max-w-sm mx-auto animate-fadeIn text-center">
+  
+            <!-- Profile Image -->
+            <div class="flex justify-center mb-4">
+              <img src="https://via.placeholder.com/100" alt="Profile Image"
+                   class="h-24 w-[100%] object-cover border-4 border-pink-500 shadow-md" />
+            </div>
+          
+            <!-- Name -->
+            <h2 class="text-xl font-bold text-pink-600 mb-2">John Doe</h2>
+          
+            <!-- College -->
+            <div class="mb-2">
+              <span class="font-semibold">College:</span>
+              <span>Indian Institute of Technology Delhi</span>
+            </div>
+          
+            <!-- Website -->
+            <div class="mb-2">
+              <span class="font-semibold">Website:</span>
+              <a href="https://www.iitd.ac.in" target="_blank" class="text-blue-600 hover:underline">www.iitd.ac.in</a>
+            </div>
+          
+            <!-- State -->
+            <div class="mb-2">
+              <span class="font-semibold">State:</span>
+              <span>Delhi</span>
+            </div>
+          
+            <!-- Country -->
+            <div class="mb-2">
+              <span class="font-semibold">Country:</span>
+              <span>India</span>
+            </div>
+          
+            <!-- Address -->
+            <div class="mb-2">
+              <span class="font-semibold">Address:</span>
+              <span>Hauz Khas, New Delhi, Delhi 110016</span>
+            </div>
+          
+            <!-- Contact -->
+            <div class="mb-2">
+              <span class="font-semibold">Contact:</span>
+              <span>+91 9876543210</span>
+            </div>
+          
+            <!-- Email -->
+            <div class="mb-2">
+              <span class="font-semibold">Email:</span>
+              <span>john.doe@example.com</span>
+            </div>
+          </div>
+          
+
+        <!-- Card 3 -->
+        <div class="bg-white text-gray-800 rounded-2xl shadow-lg p-6 w-full max-w-sm mx-auto animate-fadeIn text-center">
+  
+            <!-- Profile Image -->
+            <div class="flex justify-center mb-4">
+              <img src="https://via.placeholder.com/100" alt="Profile Image"
+                   class="h-24 w-[100%] object-cover border-4 border-pink-500 shadow-md" />
+            </div>
+          
+            <!-- Name -->
+            <h2 class="text-xl font-bold text-pink-600 mb-2">John Doe</h2>
+          
+            <!-- College -->
+            <div class="mb-2">
+              <span class="font-semibold">College:</span>
+              <span>Indian Institute of Technology Delhi</span>
+            </div>
+          
+            <!-- Website -->
+            <div class="mb-2">
+              <span class="font-semibold">Website:</span>
+              <a href="https://www.iitd.ac.in" target="_blank" class="text-blue-600 hover:underline">www.iitd.ac.in</a>
+            </div>
+          
+            <!-- State -->
+            <div class="mb-2">
+              <span class="font-semibold">State:</span>
+              <span>Delhi</span>
+            </div>
+          
+            <!-- Country -->
+            <div class="mb-2">
+              <span class="font-semibold">Country:</span>
+              <span>India</span>
+            </div>
+          
+            <!-- Address -->
+            <div class="mb-2">
+              <span class="font-semibold">Address:</span>
+              <span>Hauz Khas, New Delhi, Delhi 110016</span>
+            </div>
+          
+            <!-- Contact -->
+            <div class="mb-2">
+              <span class="font-semibold">Contact:</span>
+              <span>+91 9876543210</span>
+            </div>
+          
+            <!-- Email -->
+            <div class="mb-2">
+              <span class="font-semibold">Email:</span>
+              <span>john.doe@example.com</span>
+            </div>
+          </div>
+          
+          
+      </section>
+    </main>
+  </div>
+
+
+
+<script src="../animation.js"></script>
+  
+  
+</body>
+
+</html>

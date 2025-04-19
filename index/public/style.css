@@ -10,3 +10,34 @@
   .transform-style-preserve-3d {
     transform-style: preserve-3d;
   }
+
+
+
+
+
+  .nav-link {
+    position: relative;
+    color: white; /* text-gray-600 */
+    font-weight: 500;
+    transition: color 0.3s ease;
+    text-decoration: none;
+  }
+
+  .nav-link:hover {
+    color: #2563eb; /* text-blue-600 */
+  }
+
+  .nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    height: 2px;
+    width: 0%;
+    background-color: #3b82f6;
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::before {
+    width: 100%;
+  }
