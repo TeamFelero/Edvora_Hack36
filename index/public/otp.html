@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="./style.css">  
+</head>
+<body class="h-screen bg-gray-100 flex justify-center items-start">
+  <div class="card-container bg-gray-100 flex items-center justify-center min-h-screen">
+    <div id="loginCard" class="card bg-white p-8 rounded-3xl shadow-md flex flex-col justify-center max-w-md w-full h-auto">
+      <h2 class="text-2xl font-bold mb-6 text-center text-pink-800">Enter OTP</h2>
+      <form action="/otpVerify" method="POST">
+        <div class="mb-4">
+          <label for="number" class="block text-sm font-bold mb-2 text-pink-800">One Time Password</label>
+          <input name="OTP" type="number" id="otp" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-pink-500" placeholder="Enter the OTP" />
+        </div>
+        <button type="submit" class="w-full bg-pink-400 text-white py-2 rounded-md hover:bg-pink-500 focus:outline-none">Verify</button>
+      </form>
+      <button id="toSignup" class="mt-4 text-center text-pink-700 hover:underline">Don't have an account? Sign Up</button>
+    </div>
+  </div>
+  
+  
+</body>
+</html>
