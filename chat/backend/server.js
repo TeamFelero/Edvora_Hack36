@@ -1,6 +1,10 @@
 const app = require('express')();
-const server = requirer('http').createServer(app);
-const io = requirer('socket.io')(server);
+const server = require('http').createServer(app);
+const io = require('socket.io')(server, {
+    cors: {
+        origin: "*",
+    },
+});
 
 io.on("connection", (socket) => {
     console.log("What is socket: ", socket);
