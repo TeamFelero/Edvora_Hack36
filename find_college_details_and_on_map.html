@@ -4,44 +4,10 @@
   <title>College Finder by City</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
   <script src="https://cdn.tailwindcss.com"></script>
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   
-=======
-
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    #map {
-      height: 400px;
-      margin-top: 20px;
-    }
-    .college-card {
-      border: 1px solid #ccc;
-      padding: 10px;
-      margin-bottom: 15px;
-      border-radius: 8px;
-      background-color: #f9f9f9;
-    }
-    button {
-      margin-top: 5px;
-      padding: 5px 10px;
-      border: none;
-      background-color: #007bff;
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-  </style>
->>>>>>> 641a8c0c72b61896f32abeb03ebdbf4c40c029c5
 </head>
 <body>
 
@@ -66,38 +32,21 @@
   <div id="map" class="mt-6 h-[400px] w-full rounded border border-gray-300 bg-white shadow"></div>
 
 
+  
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <script>
     let map;
-    let markers = [];
-    const collegeContacts = {
-      "Indian Institute of Technology Bombay": "022-2572-2545",
-      "University of Mumbai": "022-2654-3000",
-      "St. Xavier's College": "022-2262-0661",
-      "Delhi University": "011-2766-7857"
-    };
-
-    function focusOnCollege(lat, lon, name) {
-      if (map) {
-        map.setView([lat, lon], 15);
-        markers.forEach(marker => {
-          const markerLatLng = marker.getLatLng();
-          if (markerLatLng.lat === lat && markerLatLng.lng === lon) {
-            marker.openPopup();
-          }
-        });
-      }
-    }
 
     async function fetchColleges() {
       const city = document.getElementById('cityInput').value.trim();
       const resultDiv = document.getElementById('result');
       resultDiv.innerHTML = "Loading...";
 
-      const apiKey = '0167fbbf5d454439a3071d713072809e';
+      const apiKey = '0167fbbf5d454439a3071d713072809e'; 
 
       try {
+        
         const geoRes = await fetch(`https://api.geoapify.com/v1/geocode/search?text=${city}&apiKey=${apiKey}`);
         const geoData = await geoRes.json();
 
@@ -116,40 +65,34 @@
           return;
         }
 
+    
         if (map) {
-          map.remove();
+          map.remove(); 
         }
-
         map = L.map('map').setView([lat, lon], 12);
         L.tileLayer(`https://tile.openstreetmap.org/{z}/{x}/{y}.png`, {
           attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
 
-        markers = [];
-        resultDiv.innerHTML = `<h3>Colleges near ${city}:</h3>`;
 
+        resultDiv.innerHTML = `<h3>Colleges near ${city}:</h3>`;
         data.features.forEach(college => {
           const props = college.properties;
           const coords = college.geometry.coordinates;
-          const name = props.name || "N/A";
-          const phone = collegeContacts[name] || "Not available";
 
           resultDiv.innerHTML += `
             <div class="college-card">
-              <strong>Name:</strong> ${name}<br>
+              <strong>Name:</strong> ${props.name || 'N/A'}<br>
               <strong>Address:</strong> ${props.address_line1 || 'N/A'}, ${props.address_line2 || ''}<br>
               <strong>Website:</strong> ${props.website ? `<a href="${props.website}" target="_blank">${props.website}</a>` : 'N/A'}<br>
-              <strong>Contact Number:</strong> ${phone}<br>
-              <strong>Type:</strong> ${props.categories ? props.categories.join(', ') : 'N/A'}<br>
-              <button onclick="focusOnCollege(${coords[1]}, ${coords[0]}, \`${name}\`)">Show on Map</button>
+              <strong>Type:</strong> ${props.categories ? props.categories.join(', ') : 'N/A'}
             </div>
           `;
 
-          const marker = L.marker([coords[1], coords[0]])
+    
+          L.marker([coords[1], coords[0]])
             .addTo(map)
-            .bindPopup(`<b>${name}</b><br>${props.address_line1 || ''}`);
-
-          markers.push(marker);
+            .bindPopup(`<b>${props.name}</b><br>${props.address_line1 || ''}`);
         });
 
       } catch (error) {
