@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 
 var genOtp;
 
-app.post("/submitLog", async (req, res) => {
+app.post("/submitLog", (req, res) => {
     console.log(req.body);
 
     res.sendFile(__dirname + "/public/loginSignup.html");
