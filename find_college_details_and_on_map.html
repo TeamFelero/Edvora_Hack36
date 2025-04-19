@@ -18,7 +18,7 @@
     .college-card {
       border: 1px solid #ccc;
       padding: 10px;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
       border-radius: 8px;
       background-color: #f9f9f9;
     }
@@ -51,6 +51,15 @@
     let map;
     let markers = [];
 
+    // Manual mobile number list
+    const collegeContacts = {
+      "Indian Institute of Technology Bombay": "022-2572-2545",
+      "University of Mumbai": "022-2654-3000",
+      "St. Xavier's College": "022-2262-0661",
+      "Delhi University": "011-2766-7857"
+      // Add more colleges with known contact numbers here
+    };
+
     function focusOnCollege(lat, lon, name) {
       if (map) {
         map.setView([lat, lon], 15);
@@ -68,7 +77,7 @@
       const resultDiv = document.getElementById('result');
       resultDiv.innerHTML = "Loading...";
 
-      const apiKey = '0167fbbf5d454439a3071d713072809e'; 
+      const apiKey = '0167fbbf5d454439a3071d713072809e';
 
       try {
         const geoRes = await fetch(`https://api.geoapify.com/v1/geocode/search?text=${city}&apiKey=${apiKey}`);
@@ -104,20 +113,23 @@
         data.features.forEach(college => {
           const props = college.properties;
           const coords = college.geometry.coordinates;
+          const name = props.name || "N/A";
+          const phone = collegeContacts[name] || "Not available";
 
           resultDiv.innerHTML += `
             <div class="college-card">
-              <strong>Name:</strong> ${props.name || 'N/A'}<br>
+              <strong>Name:</strong> ${name}<br>
               <strong>Address:</strong> ${props.address_line1 || 'N/A'}, ${props.address_line2 || ''}<br>
               <strong>Website:</strong> ${props.website ? `<a href="${props.website}" target="_blank">${props.website}</a>` : 'N/A'}<br>
+              <strong>Contact Number:</strong> ${phone}<br>
               <strong>Type:</strong> ${props.categories ? props.categories.join(', ') : 'N/A'}<br>
-              <button onclick="focusOnCollege(${coords[1]}, ${coords[0]}, \`${props.name || 'College'}\`)">Show on Map</button>
+              <button onclick="focusOnCollege(${coords[1]}, ${coords[0]}, \`${name}\`)">Show on Map</button>
             </div>
           `;
 
           const marker = L.marker([coords[1], coords[0]])
             .addTo(map)
-            .bindPopup(`<b>${props.name}</b><br>${props.address_line1 || ''}`);
+            .bindPopup(`<b>${name}</b><br>${props.address_line1 || ''}`);
 
           markers.push(marker);
         });
