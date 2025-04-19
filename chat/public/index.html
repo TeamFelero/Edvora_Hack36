@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chat App with Username</title>
+  <style>
+    body { font-family: sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+    #chat-container { max-width: 600px; margin: 50px auto; background: #fff; padding: 20px; border-radius: 8px; }
+    #messages { list-style-type: none; padding: 0; max-height: 300px; overflow-y: auto; margin-bottom: 20px; }
+    #messages li { padding: 8px 10px; margin-bottom: 10px; background: #ececec; border-radius: 5px; }
+    form { display: flex; }
+    input[type="text"] { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+    button { padding: 10px 15px; background: #007bff; color: white; border: none; border-radius: 5px; margin-left: 10px; }
+  </style>
+</head>
+<body>
+  <div id="chat-container">
+    <ul id="messages"></ul>
+    <form id="form" autocomplete="off">
+      <input id="input" type="text" placeholder="Type your message..." />
+      <button>Send</button>
+    </form>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    const form = document.getElementById('form');
+    const input = document.getElementById('input');
+    const messages = document.getElementById('messages');
+
+    let username = prompt('Enter your username:') || 'Anonymous';
+    socket.emit('set username', username);
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (input.value) {
+        socket.emit('chat message', input.value);
+        input.value = '';
+      }
+    });
+
+    socket.on('chat message', (msg) => {
+      const item = document.createElement('li');
+      item.textContent = `${msg.username}: ${msg.text}`;
+      messages.appendChild(item);
+      messages.scrollTop = messages.scrollHeight;
+    });
+  </script>
+</body>
+</html>
