@@ -2,190 +2,171 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Find Nearby Educational Institutions</title>
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leapp for Colleges</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+
 </head>
 
-<body>
-  <div id="controls" class="flex flex-wrap justify-around gap-6 p-6 bg-white border-b border-gray-200 shadow-lg rounded-lg max-w-[1000px] mx-auto mt-6">
-    <label for="cityInput" class="sr-only">City Name</label>
-    <input type="text" id="cityInput" class="px-5 py-3 border border-gray-300 rounded-lg text-base focus:outline-none focus:border-blue-500 shadow-sm w-64 md:w-70" placeholder="Enter city name" />
-    
-    <select id="typeSelect" class="px-5 py-3 border border-gray-300 rounded-lg text-base focus:outline-none focus:border-blue-500 shadow-sm w-64 md:w-70">
-      <option value="college">College</option>
-      <option value="university">University</option>
-    </select>
-    
-    <button onclick="searchByCity()" class="px-8 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out shadow-lg w-full sm:w-auto">Search</button>
-    
-    <button onclick="searchNearby()" class="px-8 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out shadow-lg w-full sm:w-auto">College Near Me</button>
-  </div>
+<body class="m-0 font-sans bg-gradient-to-r from-[#121212] to-[#1e1e1e] text-white">
 
-  <div id="cityInfo" class="text-center mt-8 p-6 bg-white mx-auto w-full max-w-3xl rounded-xl shadow-xl">
-    <h3 class="text-xl font-semibold text-gray-800 mb-3">City Information</h3>
-    <p class="text-base text-gray-600">Here will be the information about the city and educational institutions nearby.</p>
-  </div>
+    <!-- Navbar -->
+    <nav class="bg-[#c0c0c0]/40 backdrop-blur-md shadow-md rounded-3xl max-w-[85%] mt-5 mx-auto px-4 mb-3">
+        <div class="max-w-7xl mx-auto py-4 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center space-x-2 text-2xl font-bold text-white">
+                <img src="./assets/logo2.png" alt="Logo" class="h-14">
+                <div>Edvora</div>
+            </div>
 
-  <div id="institutionInfo" class="text-center mt-8 p-6 bg-white mx-auto max-w-[1000px] max-w-3xl rounded-xl shadow-xl">
-    <h3 class="text-xl font-semibold text-gray-800 mb-3">MNNIT</h3>
-    <h3 class="text-xl font-semibold text-gray-800 mb-3">Prayagraj UttarPradesh-211004</h3>
-  </div>
-  
-  
-  
-  <div id="map" class="h-[500px] w-full max-w-[1000px] mx-auto mt-8 rounded-xl shadow-xl bg-gray-100"></div>
-  
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#" class="nav-link">About</a>
+                <a href="#" class="nav-link">Services</a>
+                <a href="#" class="nav-link">Login</a>
+                <a href="#" class="nav-link">Find</a>
+            </div>
 
+            <!-- Hamburger -->
+            <div class="md:hidden">
+                <button id="menu-toggle">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
 
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 flex flex-col space-y-2">
+            <a href="#" class="nav-link">Home</a>
+            <a href="#" class="nav-link">About</a>
+            <a href="#" class="nav-link">Services</a>
+            <a href="#" class="nav-link">Login</a>
+            <a href="#" class="nav-link">Find</a>
+        </div>
+    </nav>
 
-  <script>
-    let map;
-    let resultsLayer;
-
-    async function searchByCity() {
-      const city = document.getElementById("cityInput").value.trim();
-      const type = document.getElementById("typeSelect").value;
-
-      if (!city) {
-        alert("Please enter a city name.");
-        return;
-      }
-
-      const geoUrl = `https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&q=${encodeURIComponent(city)}`;
-      const geoRes = await fetch(geoUrl);
-      const geoData = await geoRes.json();
-
-      if (!geoData || geoData.length === 0) {
-        alert("City not found.");
-        return;
-      }
-
-      const cityData = geoData[0];
-      const lat = parseFloat(cityData.lat);
-      const lon = parseFloat(cityData.lon);
-      const displayName = cityData.display_name;
-      const typeName = cityData.type || "unknown";
-      const address = cityData.address || {};
-      const region = address.state || address.region || address.county || "Unknown Region";
-      const country = address.country || "Unknown Country";
-
-      document.getElementById("cityInfo").innerHTML = `
-        <h3>🌆 ${displayName}</h3>
-        <p>
-          <strong>Type:</strong> ${typeName.charAt(0).toUpperCase() + typeName.slice(1)}<br>
-          <strong>Region:</strong> ${region}<br>
-          <strong>Country:</strong> ${country}<br>
-          <strong>Coordinates:</strong> ${lat.toFixed(4)}, ${lon.toFixed(4)}
-        </p>
-      `;
-
-      updateMapAndMarkers(lat, lon, type);
-    }
-
-    async function searchNearby() {
-      const type = document.getElementById("typeSelect").value;
-
-      if (!navigator.geolocation) {
-        alert("Geolocation is not supported by your browser.");
-        return;
-      }
-
-      navigator.geolocation.getCurrentPosition(
-        async position => {
-          const lat = position.coords.latitude;
-          const lon = position.coords.longitude;
-          const accuracy = position.coords.accuracy;
-
-          console.log("Accuracy: ", accuracy);
-
-          const reverseUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`;
-          const reverseRes = await fetch(reverseUrl);
-          const reverseData = await reverseRes.json();
-
-          const address = reverseData.address || {};
-          const displayName = reverseData.display_name || "Your Location";
-          const region = address.state || address.region || address.county || "Unknown Region";
-          const country = address.country || "Unknown Country";
-
-          document.getElementById("cityInfo").innerHTML = `
-            <h3>📍 You are near: ${displayName}</h3>
-            <p>
-              <strong>Region:</strong> ${region}<br>
-              <strong>Country:</strong> ${country}<br>
-              <strong>Coordinates:</strong> ${lat.toFixed(4)}, ${lon.toFixed(4)}
+    <!-- Page Content -->
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-full md:w-[400px] p-8 md:p-12 bg-black">
+            <h1 class="text-xl text-white mb-4">EDVORA</h1>
+            <h2 class="text-4xl text-gray-300 leading-snug">
+                Home Page<br>For <span class="text-gray-400">Leapp for</span><br>
+                <strong class="text-white font-bold">Colleges</strong>
+            </h2>
+            <p class="text-gray-400 mt-4 mb-8">
+                We’re your wheelhouse for Colleges for save, lead youth...
             </p>
-          `;
+            <button
+                class="bg-pink-500 text-white px-6 py-3 rounded-lg font-bold transition-transform duration-300 hover:scale-105">
+                Search Program
+            </button>
+        </aside>
 
-          updateMapAndMarkers(lat, lon, type);
-        },
-        error => {
-          alert("Unable to retrieve your location.");
-        },
-        {
-          enableHighAccuracy: true,
-          timeout: 5000,
-          maximumAge: 0
-        }
-      );
-    }
+        <!-- Main Content -->
+        <main class="flex-1 bg-gray-100 text-gray-800 p-8 rounded-t-[30px] md:rounded-l-[30px] w-full">
+            <!-- Top Nav -->
+            <header class="flex flex-wrap justify-between gap-4 mb-8">
+                <nav class="flex flex-wrap space-x-4">
+                    <a href="#" class="text-pink-500 font-medium">Colleges</a>
+                    <a href="#" class="text-gray-600 font-medium">News</a>
+                    <a href="#" class="text-gray-600 font-medium">Reviews</a>
+                    <a href="#" class="text-gray-600 font-medium">Chat</a>
+                </nav>
+                <div class="space-x-4">
+                    <button
+                        class="bg-gradient-to-r from-red-500 to-yellow-500 text-white px-4 py-2 rounded-lg">On</button>
+                    <button
+                        class="bg-gradient-to-r from-red-500 to-yellow-500 text-white px-4 py-2 rounded-lg">Profile</button>
+                </div>
+            </header>
 
-    async function updateMapAndMarkers(lat, lon, type) {
-      if (!map) {
-        map = L.map('map').setView([lat, lon], 13);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          maxZoom: 19,
-          attribution: '&copy; OpenStreetMap contributors'
-        }).addTo(map);
-      } else {
-        map.setView([lat, lon], 13);
-        if (resultsLayer) resultsLayer.clearLayers();
-      }
+            <!-- Search Section -->
+            <section class="mb-8">
+                <div class="relative w-full">
+                    <input type="text" placeholder="Search Colleges..."
+                        class="w-full py-3 pl-4 pr-12 rounded-xl border-none focus:ring-2 focus:ring-pink-400 focus:outline-none text-gray-800" />
+                    <button
+                        class="absolute top-1/2 right-3 transform -translate-y-1/2 bg-pink-500 hover:bg-pink-600 p-2 rounded-full transition duration-300">
+                        <img src="./assets/search.png" alt="Search" class="h-5 w-5" />
+                    </button>
+                </div>
+            </section>
 
-      const radius = 5000;
-      const query = `
-        [out:json];
-        (
-          node["amenity"="${type}"](around:${radius},${lat},${lon});
-          way["amenity"="${type}"](around:${radius},${lat},${lon});
-          relation["amenity"="${type}"](around:${radius},${lat},${lon});
-        );
-        out center;
-      `;
-      const overpassUrl = "https://overpass-api.de/api/interpreter?data=" + encodeURIComponent(query);
-      const res = await fetch(overpassUrl);
-      const data = await res.json();
+            <!-- Cards Section -->
+            <section class="flex flex-wrap gap-6 justify-center md:justify-start">
+                <!-- Card 1 -->
+                <div class="w-full max-w-sm mx-auto perspective">
+                    <div class="relative w-full h-[400px] transform-style-preserve-3d card">
+                      <!-- Front Side -->
+                      <div class="absolute w-full h-full backface-hidden bg-white rounded-2xl shadow-lg overflow-hidden text-center flex flex-col items-center justify-center">
+                        <img src="https://www.iitd.ac.in/sites/default/files/logo_0.png" alt="College Image" class="h-32 w-32 object-contain mb-4" />
+                        <h2 class="text-xl font-bold text-pink-600">IIT Delhi</h2>
+                      </div>
+                  
+                      <!-- Back Side -->
+                      <div class="absolute w-full h-full backface-hidden bg-white rounded-2xl shadow-lg p-6 text-gray-800 rotate-y-180 overflow-y-auto">
+                        <!-- Name -->
+                        <h2 class="text-xl font-bold text-pink-600 mb-2">John Doe</h2>
+                  
+                        <!-- Info -->
+                        <div class="mb-2"><span class="font-semibold">College:</span> IIT Delhi</div>
+                        <div class="mb-2"><span class="font-semibold">Website:</span>
+                          <a href="https://www.iitd.ac.in" target="_blank" class="text-blue-600 hover:underline">www.iitd.ac.in</a>
+                        </div>
+                        <div class="mb-2"><span class="font-semibold">State:</span> Delhi</div>
+                        <div class="mb-2"><span class="font-semibold">Country:</span> India</div>
+                        <div class="mb-2"><span class="font-semibold">Address:</span> Hauz Khas, New Delhi, Delhi 110016</div>
+                        <div class="mb-2"><span class="font-semibold">Contact:</span> +91 9876543210</div>
+                        <div class="mb-2"><span class="font-semibold">Email:</span> john.doe@example.com</div>
+                      </div>
+                    </div>
+                  </div>
 
-      const elements = data.elements;
-      const markers = [];
 
-      if (elements.length === 0) {
-        alert("No institutions found nearby.");
-        return;
-      }
+                  <div class="w-full max-w-sm mx-auto perspective">
+                    <div class="relative w-full h-[400px] transform-style-preserve-3d card">
+                      <!-- Front Side -->
+                      <div class="absolute w-full h-full backface-hidden bg-white rounded-2xl shadow-lg overflow-hidden text-center flex flex-col items-center justify-center">
+                        <img src="https://www.iitd.ac.in/sites/default/files/logo_0.png" alt="College Image" class="h-32 w-32 object-contain mb-4" />
+                        <h2 class="text-xl font-bold text-pink-600">IIT Delhi</h2>
+                      </div>
+                  
+                      <!-- Back Side -->
+                      <div class="absolute w-full h-full backface-hidden bg-white rounded-2xl shadow-lg p-6 text-gray-800 rotate-y-180 overflow-y-auto">
+                        <!-- Name -->
+                        <h2 class="text-xl font-bold text-pink-600 mb-2">John Doe</h2>
+                  
+                        <!-- Info -->
+                        <div class="mb-2"><span class="font-semibold">College:</span> IIT Delhi</div>
+                        <div class="mb-2"><span class="font-semibold">Website:</span>
+                          <a href="https://www.iitd.ac.in" target="_blank" class="text-blue-600 hover:underline">www.iitd.ac.in</a>
+                        </div>
+                        <div class="mb-2"><span class="font-semibold">State:</span> Delhi</div>
+                        <div class="mb-2"><span class="font-semibold">Country:</span> India</div>
+                        <div class="mb-2"><span class="font-semibold">Address:</span> Hauz Khas, New Delhi, Delhi 110016</div>
+                        <div class="mb-2"><span class="font-semibold">Contact:</span> +91 9876543210</div>
+                        <div class="mb-2"><span class="font-semibold">Email:</span> john.doe@example.com</div>
+                      </div>
+                    </div>
+                  </div>
 
-      elements.forEach(el => {
-        const elLat = el.lat || el.center?.lat;
-        const elLon = el.lon || el.center?.lon;
-        if (elLat && elLon) {
-          const tags = el.tags || {};
-          const name = tags.name || "Unnamed";
-          const operator = tags.operator || "Unknown Operator";
-          const popupContent = `
-            <b>${name}</b><br>
-            Type: ${type}<br>
-            Operator: ${operator}
-          `;
-          markers.push(L.marker([elLat, elLon]).bindPopup(popupContent));
-        }
-      });
+                
+            </section>
+        </main>
+    </div>
 
-      resultsLayer = L.layerGroup(markers).addTo(map);
-    }
-  </script>
+
+
+    <script src="../animation.js"></script>
+
 
 </body>
 
