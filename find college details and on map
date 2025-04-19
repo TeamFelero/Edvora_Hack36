@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>College Finder by City</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    #map {
+      height: 400px;
+      margin-top: 20px;
+    }
+    .college-card {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>College Finder by City</h2>
+  <input type="text" id="cityInput" placeholder="Enter city name (e.g., Mumbai)">
+  <button onclick="fetchColleges()">Search</button>
+
+  <div id="result"></div>
+  <div id="map"></div>
+
+  
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <script>
+    let map;
+
+    async function fetchColleges() {
+      const city = document.getElementById('cityInput').value.trim();
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = "Loading...";
+
+      const apiKey = '0167fbbf5d454439a3071d713072809e'; 
+
+      try {
+        
+        const geoRes = await fetch(`https://api.geoapify.com/v1/geocode/search?text=${city}&apiKey=${apiKey}`);
+        const geoData = await geoRes.json();
+
+        if (!geoData.features || geoData.features.length === 0) {
+          resultDiv.innerHTML = "City not found.";
+          return;
+        }
+
+        const { lon, lat } = geoData.features[0].properties;
+
+        const response = await fetch(`https://api.geoapify.com/v2/places?categories=education.university&filter=circle:${lon},${lat},50000&limit=20&apiKey=${apiKey}`);
+        const data = await response.json();
+
+        if (!data.features || data.features.length === 0) {
+          resultDiv.innerHTML = "No colleges found.";
+          return;
+        }
+
+    
+        if (map) {
+          map.remove(); 
+        }
+        map = L.map('map').setView([lat, lon], 12);
+        L.tileLayer(`https://tile.openstreetmap.org/{z}/{x}/{y}.png`, {
+          attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+
+        resultDiv.innerHTML = `<h3>Colleges near ${city}:</h3>`;
+        data.features.forEach(college => {
+          const props = college.properties;
+          const coords = college.geometry.coordinates;
+
+          resultDiv.innerHTML += `
+            <div class="college-card">
+              <strong>Name:</strong> ${props.name || 'N/A'}<br>
+              <strong>Address:</strong> ${props.address_line1 || 'N/A'}, ${props.address_line2 || ''}<br>
+              <strong>Website:</strong> ${props.website ? `<a href="${props.website}" target="_blank">${props.website}</a>` : 'N/A'}<br>
+              <strong>Type:</strong> ${props.categories ? props.categories.join(', ') : 'N/A'}
+            </div>
+          `;
+
+    
+          L.marker([coords[1], coords[0]])
+            .addTo(map)
+            .bindPopup(`<b>${props.name}</b><br>${props.address_line1 || ''}`);
+        });
+
+      } catch (error) {
+        console.error(error);
+        resultDiv.innerHTML = "An error occurred while fetching data.";
+      }
+    }
+  </script>
+
+</body>
+</html>
