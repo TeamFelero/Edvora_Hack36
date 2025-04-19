@@ -4,29 +4,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>College Recommender</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { font-family: Arial; padding: 20px; }
-    input, label { display: block; margin: 10px 0; }
-    button { margin-top: 10px; }
-    .college { border: 1px solid #ccc; padding: 10px; margin-top: 10px; }
+    body { font-family: Arial, sans-serif; padding: 20px; background-color: #f9fafb; }
+    .college { border: 1px solid #ccc; padding: 10px; margin-top: 10px; border-radius: 8px; background-color: white; }
   </style>
 </head>
 <body>
-  <h1>College Recommender</h1>
-  <form id="prefForm">
-    <label>Stream: <input type="text" id="stream" value="Engineering"></label>
-    <label>State: <input type="text" id="state"></label>
-    <label>Max Fee: <input type="number" id="maxFee"></label>
-
-    <label>Placement Priority (1-10): <input type="number" id="placement" value="5"></label>
-    <label>Infrastructure Priority (1-10): <input type="number" id="infrastructure" value="5"></label>
-    <label>Faculty Priority (1-10): <input type="number" id="faculty" value="5"></label>
-    <label>Academic Priority (1-10): <input type="number" id="academic" value="5"></label>
-
-    <button type="submit">Find Colleges</button>
+  <h1 class="text-3xl font-bold text-center mb-8">College Recommender</h1>
+  <form id="prefForm" class="space-y-6">
+    <label class="block text-lg font-medium text-gray-700">Stream:
+      <input type="text" id="stream" value="Engineering" class="mt-1 p-2 border border-gray-300 rounded-md w-full" />
+    </label>
+    
+    <label class="block text-lg font-medium text-gray-700">State:
+      <input type="text" id="state" class="mt-1 p-2 border border-gray-300 rounded-md w-full" />
+    </label>
+    
+    <label class="block text-lg font-medium text-gray-700">Max Fee:
+      <input type="number" id="maxFee" class="mt-1 p-2 border border-gray-300 rounded-md w-full" />
+    </label>
+  
+    <label class="block text-lg font-medium text-gray-700">Placement Priority (1-10):
+      <input type="number" id="placement" value="5" class="mt-1 p-2 border border-gray-300 rounded-md w-full" />
+    </label>
+    
+    <label class="block text-lg font-medium text-gray-700">Infrastructure Priority (1-10):
+      <input type="number" id="infrastructure" value="5" class="mt-1 p-2 border border-gray-300 rounded-md w-full" />
+    </label>
+    
+    <label class="block text-lg font-medium text-gray-700">Faculty Priority (1-10):
+      <input type="number" id="faculty" value="5" class="mt-1 p-2 border border-gray-300 rounded-md w-full" />
+    </label>
+    
+    <label class="block text-lg font-medium text-gray-700">Academic Priority (1-10):
+      <input type="number" id="academic" value="5" class="mt-1 p-2 border border-gray-300 rounded-md w-full" />
+    </label>
+  
+    <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600">Find Colleges</button>
   </form>
-
-  <div id="results"></div>
+  
+  <div id="results" class="mt-8"></div>
+  
+  
+  
 
   <script>
     document.getElementById('prefForm').addEventListener('submit', async (e) => {

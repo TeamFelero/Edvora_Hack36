@@ -18,38 +18,36 @@
     <nav class="bg-[#c0c0c0]/40 backdrop-blur-md shadow-md rounded-3xl max-w-[85%] mt-5 mx-auto px-4 mb-3">
         <div class="max-w-7xl mx-auto py-4 flex items-center justify-between">
             <!-- Logo -->
-            <div class="flex items-center space-x-2 text-2xl font-bold text-white">
+            <div class="flex items-center justify- space-x-2 text-2xl font-bold text-white">
                 <img src="./assets/logo2.png" alt="Logo" class="h-14">
                 <div>Edvora</div>
-            </div>
 
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex space-x-6 items-center">
-                <a href="#" class="nav-link">Home</a>
-                <a href="#" class="nav-link">About</a>
-                <a href="./loginSignup.html" class="nav-link">Login</a>
-            </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-6 items-center">
+                    <a href="#" class="nav-link">Home</a>
+                    <a href="#" class="nav-link">About</a>
+                    <a href="./loginSignup.html" class="nav-link">Login</a>
+                    <!-- Removed unmatched closing </div> -->
 
-            <!-- Hamburger -->
-            <div class="md:hidden">
-                <button id="menu-toggle">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
-            </div>
-        </div>
+                    <!-- Hamburger -->
+                    <div class="md:hidden">
+                        <button id="menu-toggle">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 flex flex-col space-y-2">
-            <a href="#" class="nav-link">Home</a>
-            <a href="#" class="nav-link">About</a>
-            <a href="#" class="nav-link">Services</a>
-            <a href="#" class="nav-link">Login</a>
-            <a href="#" class="nav-link">Find</a>
-            
-        </div>
+                <!-- Mobile Menu -->
+                <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 flex flex-col space-y-2">
+                    <a href="#" class="nav-link">Home</a>
+                    <a href="#" class="nav-link">About</a>
+                    <a href="./loginSignup.html" class="nav-link">Login</a>
+
+
+                </div>
     </nav>
 
     <!-- Page Content -->
@@ -75,14 +73,20 @@
             <!-- Top Nav -->
             <header class="flex flex-wrap justify-between gap-4 mb-8">
                 <nav class="flex flex-wrap space-x-4 justify-start items-center w-full gap-4">
-                    <a href="#" class="text-pink-500 font-medium" data-section="Colleges">Colleges</a>
+                    <!-- <a href="#" class="text-pink-500 font-medium" data-section="Colleges">Colleges</a>
                     <a href="#" class="text-gray-600 font-medium" data-section="UniAI">UniAI</a>
                     <a href="#" class="text-gray-600 font-medium" data-section="News">News</a>
                     <a href="#" class="text-gray-600 font-medium" data-section="Reviews">Reviews</a>
                     <a href="#" class="text-gray-600 font-medium" data-section="Chat">Chat</a>
                     <a href="#"
                         class="text-gray-600 font-medium px-6 py-3 rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 text-white font-bold text-lg shadow-xl hover:scale-105 hover:shadow-2xl transition-transform duration-300 backdrop-blur-lg border border-white/20"
-                        data-section="GetPremium">✨ Get Premium</a>
+                        data-section="GetPremium">✨ Get Premium</a> -->
+                    <a href="#" data-section="Colleges" class="text-gray-600">Colleges</a>
+                    <a href="#" data-section="News" class="text-gray-600">News</a>
+                    <a href="#" data-section="Reviews" class="text-gray-600">Reviews</a>
+                    <a href="#" data-section="GetPremium" class="text-gray-600">Get Premium</a>
+                    <a href="#" data-section="Chat" class="text-gray-600">Chat</a>
+
                 </nav>
             </header>
 
@@ -101,74 +105,6 @@
                         </button>
                     </div>
                 </section>
-
-                <!-- Cards Section -->
-                <section class="flex flex-wrap gap-6 justify-center md:justify-start">
-                    <!-- Card 1 -->
-                    <div class="w-full max-w-sm mx-auto perspective">
-                        <div class="relative w-full h-[400px] transform-style-preserve-3d card">
-                            <!-- Front Side -->
-                            <div
-                                class="absolute w-full h-full backface-hidden bg-white rounded-2xl shadow-lg overflow-hidden text-center flex flex-col items-center justify-center">
-                                <img src="https://www.iitd.ac.in/sites/default/files/logo_0.png" alt="College Image"
-                                    class="h-32 w-32 object-contain mb-4" />
-                                <h2 class="text-xl font-bold text-pink-600">IIT Delhi</h2>
-                            </div>
-
-                            <!-- Back Side -->
-                            <div
-                                class="absolute w-full h-full backface-hidden bg-white rounded-2xl shadow-lg p-6 text-gray-800 rotate-y-180 overflow-y-auto">
-                                <!-- Name -->
-                                <h2 class="text-xl font-bold text-pink-600 mb-2">John Doe</h2>
-
-                                <!-- Info -->
-                                <div class="mb-2"><span class="font-semibold">College:</span> IIT Delhi</div>
-                                <div class="mb-2"><span class="font-semibold">Website:</span>
-                                    <a href="https://www.iitd.ac.in" target="_blank"
-                                        class="text-blue-600 hover:underline">www.iitd.ac.in</a>
-                                </div>
-                                <div class="mb-2"><span class="font-semibold">State:</span> Delhi</div>
-                                <div class="mb-2"><span class="font-semibold">Country:</span> India</div>
-                                <div class="mb-2"><span class="font-semibold">Address:</span> Hauz Khas, New Delhi,
-                                    Delhi 110016</div>
-                                <div class="mb-2"><span class="font-semibold">Contact:</span> +91 9876543210</div>
-                                <div class="mb-2"><span class="font-semibold">Email:</span> john.doe@example.com</div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="w-full max-w-sm mx-auto perspective">
-                        <div class="relative w-full h-[400px] transform-style-preserve-3d card">
-                            <!-- Front Side -->
-                            <div
-                                class="absolute w-full h-full backface-hidden bg-white rounded-2xl shadow-lg overflow-hidden text-center flex flex-col items-center justify-center">
-                                <img src="https://www.iitd.ac.in/sites/default/files/logo_0.png" alt="College Image"
-                                    class="h-32 w-32 object-contain mb-4" />
-                                <h2 class="text-xl font-bold text-pink-600">IIT Delhi</h2>
-                            </div>
-
-                            <!-- Back Side -->
-                            <div
-                                class="absolute w-full h-full backface-hidden bg-white rounded-2xl shadow-lg p-6 text-gray-800 rotate-y-180 overflow-y-auto">
-                                <!-- Name -->
-                                <h2 class="text-xl font-bold text-pink-600 mb-2">John Doe</h2>
-
-                                <!-- Info -->
-                                <div class="mb-2"><span class="font-semibold">College:</span> IIT Delhi</div>
-                                <div class="mb-2"><span class="font-semibold">Website:</span>
-                                    <a href="https://www.iitd.ac.in" target="_blank"
-                                        class="text-blue-600 hover:underline">www.iitd.ac.in</a>
-                                </div>
-                                <div class="mb-2"><span class="font-semibold">State:</span> Delhi</div>
-                                <div class="mb-2"><span class="font-semibold">Country:</span> India</div>
-                                <div class="mb-2"><span class="font-semibold">Address:</span> Hauz Khas, New Delhi,
-                                    Delhi 110016</div>
-                                <div class="mb-2"><span class="font-semibold">Contact:</span> +91 9876543210</div>
-                                <div class="mb-2"><span class="font-semibold">Email:</span> john.doe@example.com</div>
-                            </div>
-                        </div>
-                    </div>
             </div>
 
 
@@ -386,11 +322,6 @@
 
     </div>
     </section>
-
-
-
-
-
     </main>
     </div>
 
@@ -402,7 +333,7 @@
             Reviews: document.getElementById('Review'),
             GetPremium: document.getElementById('GetPremium'),
             Chat: document.getElementById('Chat'),
-            UniAI : NULL,
+            UniAI: null,  // Fixed the issue here
         };
 
         tabs.forEach(tab => {
@@ -425,15 +356,7 @@
             });
         });
 
-    </script>
 
-    <script>
-        const menuBtn = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
     </script>
 
     <script>
