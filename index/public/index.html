@@ -28,7 +28,13 @@
             <div class="hidden md:flex space-x-6 items-center">
                 <a href="#" class="nav-link">Home</a>
                 <a href="#" class="nav-link">About</a>
+<<<<<<< HEAD
                 <a href="./loginSignup.html" class="nav-link">Login</a>
+=======
+                <a href="#" class="nav-link">Services</a>
+                <a href="#" class="nav-link">Login</a>
+                <a href="#" class="nav-link">Find</a>
+>>>>>>> df226d53537e46c7fe96bdedb60354dc6122f7f0
             </div>
 
             <!-- Hamburger -->
@@ -46,10 +52,16 @@
         <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 flex flex-col space-y-2">
             <a href="#" class="nav-link">Home</a>
             <a href="#" class="nav-link">About</a>
+<<<<<<< HEAD
             <!-- <a href="#" class="nav-link">Services</a> -->
             <a href="#" class="nav-link">Login</a>
             <!-- <a href="#" class="nav-link">Find</a> -->
             
+=======
+            <a href="#" class="nav-link">Services</a>
+            <a href="#" class="nav-link">Login</a>
+            <a href="#" class="nav-link">Find</a>
+>>>>>>> df226d53537e46c7fe96bdedb60354dc6122f7f0
         </div>
     </nav>
 
@@ -76,20 +88,13 @@
             <!-- Top Nav -->
             <header class="flex flex-wrap justify-between gap-4 mb-8">
                 <nav class="flex flex-wrap space-x-4 justify-start items-center w-full gap-4">
-                    <!-- <a href="#" class="text-pink-500 font-medium" data-section="Colleges">Colleges</a>
-                    <a href="#" class="text-gray-600 font-medium" data-section="UniAI">UniAI</a>
+                    <a href="#" class="text-pink-500 font-medium" data-section="Colleges">Colleges</a>
                     <a href="#" class="text-gray-600 font-medium" data-section="News">News</a>
                     <a href="#" class="text-gray-600 font-medium" data-section="Reviews">Reviews</a>
                     <a href="#" class="text-gray-600 font-medium" data-section="Chat">Chat</a>
                     <a href="#"
                         class="text-gray-600 font-medium px-6 py-3 rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 text-white font-bold text-lg shadow-xl hover:scale-105 hover:shadow-2xl transition-transform duration-300 backdrop-blur-lg border border-white/20"
-                        data-section="GetPremium">✨ Get Premium</a> -->
-                    <a href="#" data-section="Colleges" class="text-gray-600">Colleges</a>
-                    <a href="#" data-section="News" class="text-gray-600">News</a>
-                    <a href="#" data-section="Reviews" class="text-gray-600">Reviews</a>
-                    <a href="#" data-section="GetPremium" class="text-gray-600">Get Premium</a>
-                    <a href="#" data-section="Chat" class="text-gray-600">Chat</a>
-
+                        data-section="GetPremium">✨ Get Premium</a>
                 </nav>
             </header>
 
@@ -107,7 +112,6 @@
                     </button>
                   </div>
                 </section>
-<<<<<<< HEAD:index/public/find.html
         
                 <section class="mb-8" id="result"></section>
         
@@ -116,10 +120,6 @@
                 </section>
               </div>
         
-=======
-            </div>
-
->>>>>>> 448b1f60e41a6b9cdd14b213c4eb7b23d7ec42fd:index/public/index.html
 
             <!-- news -->
             <section class="p-6 bg-gray-100 text-gray-800 hidden" id="news-section">
@@ -225,16 +225,12 @@
             </section>
 
     </div>
-<<<<<<< HEAD:index/public/find.html
 
 
 
 
 
 
-=======
-    </section>
->>>>>>> 448b1f60e41a6b9cdd14b213c4eb7b23d7ec42fd:index/public/index.html
     </main>
     </div>
 
@@ -246,7 +242,6 @@
             Reviews: document.getElementById('Review'),
             GetPremium: document.getElementById('GetPremium'),
             Chat: document.getElementById('Chat'),
-            UniAI: null,  // Fixed the issue here
         };
 
         tabs.forEach(tab => {
@@ -269,7 +264,15 @@
             });
         });
 
+    </script>
 
+    <script>
+        const menuBtn = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
     </script>
 
     <script>
