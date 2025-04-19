@@ -12,6 +12,7 @@
     <div class="flex flex-col items-center">
       <!-- Profile Picture -->
       <img
+        id="photo"
         class="w-32 h-32 rounded-full object-cover shadow mb-4"
         src="../../index/public/assets/180273.jpg"
         alt="User Profile Photo"
@@ -59,14 +60,13 @@
         document.getElementById("college").textContent = data.college;
         document.getElementById("address").textContent = data.address;
   
-        // Optional: update profile image if stored
-        if (data.photo && document.querySelector("img")) {
-          document.querySelector("img").src = data.photo;
-        }
-      })
-      .catch((err) => {
-        console.error("Failed to load profile", err);
-      });
+  if (data.photo && document.getElementById("photo")) {
+    document.getElementById("photo").src = data.photo;
+  }
+})
+.catch((err) => {
+  console.error("Failed to load profile", err);
+});
   </script>
   
 </body>
