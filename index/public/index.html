@@ -2,322 +2,171 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leapp for Colleges</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
 
 </head>
 
-<body class="bg-[#F4C39F]">
+<body class="m-0 font-sans bg-gradient-to-r from-[#121212] to-[#1e1e1e] text-white">
 
-
-    <div
-        class="bhargav bg-[url('./assets/background4.jpg')] bg-no-repeat bg-top bg-cover h-150 w-full flex flex-col items-center justify-center">
-        <nav
-            class="bg-[#ffff]/50 backdrop-blur-md shadow-md top-2 left-0 right-0 z-50 rounded-3xl mx-auto w-[1000px] mt-5">
-            <!-- changing tranparemcy -->
-
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between h-16 items-center">
-                    <!-- Logo -->
-                    <div class="flex justify-center items-center text-2xl font-bold text-blue-600">
-                        <div><img src="./assets/logo.png" alt="" class="h-14"></div>
-                        <div>Edvora</div>
-                    </div>
-
-                    <!-- Desktop Menu -->
-                    <div class="hidden md:flex space-x-6 items-center">
-                        <a href="#"
-                            class="relative text-gray-600 hover:text-blue-600 transition duration-300 font-medium before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-0.5 before:bg-blue-600 hover:before:w-full before:transition-all before:duration-300">Home</a>
-                        <a href="#"
-                            class="relative text-gray-600 hover:text-blue-600 transition duration-300 font-medium before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-0.5 before:bg-blue-600 hover:before:w-full before:transition-all before:duration-300">About</a>
-                        <a href="#"
-                            class="relative text-gray-600 hover:text-blue-600 transition duration-300 font-medium before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-0.5 before:bg-blue-600 hover:before:w-full before:transition-all before:duration-300">Services</a>
-                        <a href="#"
-                            class="relative text-gray-600 hover:text-blue-600 transition duration-300 font-medium before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-0.5 before:bg-blue-600 hover:before:w-full before:transition-all before:duration-300">Login</a>
-                        <a href="#"
-                            class="relative text-gray-600 hover:text-blue-600 transition duration-300 font-medium before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-0.5 before:bg-blue-600 hover:before:w-full before:transition-all before:duration-300">Find</a>
-                    </div>
-
-                    <!-- Mobile Hamburger -->
-                    <div class="md:hidden flex items-center">
-                        <button id="menu-toggle"
-                            class="text-gray-600 hover:text-blue-600 transition duration-300 focus:outline-none">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
+    <!-- Navbar -->
+    <nav class="bg-[#c0c0c0]/40 backdrop-blur-md shadow-md rounded-3xl max-w-[85%] mt-5 mx-auto px-4 mb-3">
+        <div class="max-w-7xl mx-auto py-4 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center space-x-2 text-2xl font-bold text-white">
+                <img src="./assets/logo2.png" alt="Logo" class="h-14">
+                <div>Edvora</div>
             </div>
 
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 space-y-2 transition-all duration-300">
-                <a href="#" class="text-gray-600 hover:text-blue-600 transition duration-300">Home</a>
-                <a href="#" class="text-gray-600 hover:text-blue-600 transition duration-300">About</a>
-                <a href="#" class="text-gray-600 hover:text-blue-600 transition duration-300">Services</a>
-                <a href="#" class="text-gray-600 hover:text-blue-600 transition duration-300">Login</a>
-                <a href="find.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Find</a>
-
-            </div>
-        </nav>
-
-        <div class="relative rounded-full shadow-lg p-4 mt-10 max-w-[85%]">
-            <input 
-              type="text" 
-              placeholder="Search Collage" 
-              class="w-full px-4 py-2 pr-12 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
-            />
-            
-            <button 
-              class="absolute right-6 top-1/2 transform -translate-y-1/2 hover:bg-[#e76f51] text-white p-2 rounded-full transition duration-300"
-            >
-              <img src="./assets/search.png" alt="Search" class="h-5 w-5" />
-            </button>
-          </div>
-          
-
-        <div
-            class="flex flex-col md:flex-row bg-[#e76f51] rounded-xl shadow-lg overflow-hidden max-w-[85%] mt-10 m-auto">
-
-            <!-- Image Container -->
-            <div class="w-full md:w-1/2">
-                <img id="slider-img" src="./assets/8440594.jpg" alt="Changing Image"
-                    class="w-full h-full object-cover transition duration-700 ease-in-out" />
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#" class="nav-link">About</a>
+                <a href="#" class="nav-link">Services</a>
+                <a href="#" class="nav-link">Login</a>
+                <a href="#" class="nav-link">Find</a>
             </div>
 
-            <!-- Description Container -->
-            <div class="w-full md:w-1/2 p-8 flex flex-col justify-center">
-                <h2 id="image-title" class="text-2xl font-bold text-gray-800 mb-4">Title 1</h2>
-                <p id="image-desc" class="text-gray-600">This is the description for Image 1. It changes as the image
-                    changes.</p>
+            <!-- Hamburger -->
+            <div class="md:hidden">
+                <button id="menu-toggle">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
             </div>
         </div>
-    </div>
 
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 flex flex-col space-y-2">
+            <a href="#" class="nav-link">Home</a>
+            <a href="#" class="nav-link">About</a>
+            <a href="#" class="nav-link">Services</a>
+            <a href="#" class="nav-link">Login</a>
+            <a href="#" class="nav-link">Find</a>
+        </div>
+    </nav>
 
+    <!-- Page Content -->
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-full md:w-[400px] p-8 md:p-12 bg-black">
+            <h1 class="text-xl text-white mb-4">EDVORA</h1>
+            <h2 class="text-4xl text-gray-300 leading-snug">
+                Home Page<br>For <span class="text-gray-400">Leapp for</span><br>
+                <strong class="text-white font-bold">Colleges</strong>
+            </h2>
+            <p class="text-gray-400 mt-4 mb-8">
+                We’re your wheelhouse for Colleges for save, lead youth...
+            </p>
+            <button
+                class="bg-pink-500 text-white px-6 py-3 rounded-lg font-bold transition-transform duration-300 hover:scale-105">
+                Search Program
+            </button>
+        </aside>
 
-    <!-- index.html or inside your React component -->
+        <!-- Main Content -->
+        <main class="flex-1 bg-gray-100 text-gray-800 p-8 rounded-t-[30px] md:rounded-l-[30px] w-full">
+            <!-- Top Nav -->
+            <header class="flex flex-wrap justify-between gap-4 mb-8">
+                <nav class="flex flex-wrap space-x-4">
+                    <a href="#" class="text-pink-500 font-medium">Colleges</a>
+                    <a href="#" class="text-gray-600 font-medium">News</a>
+                    <a href="#" class="text-gray-600 font-medium">Reviews</a>
+                    <a href="#" class="text-gray-600 font-medium">Chat</a>
+                </nav>
+                <div class="space-x-4">
+                    <button
+                        class="bg-gradient-to-r from-red-500 to-yellow-500 text-white px-4 py-2 rounded-lg">On</button>
+                    <button
+                        class="bg-gradient-to-r from-red-500 to-yellow-500 text-white px-4 py-2 rounded-lg">Profile</button>
+                </div>
+            </header>
 
+            <!-- Search Section -->
+            <section class="mb-8">
+                <div class="relative w-full">
+                    <input type="text" placeholder="Search Colleges..."
+                        class="w-full py-3 pl-4 pr-12 rounded-xl border-none focus:ring-2 focus:ring-pink-400 focus:outline-none text-gray-800" />
+                    <button
+                        class="absolute top-1/2 right-3 transform -translate-y-1/2 bg-pink-500 hover:bg-pink-600 p-2 rounded-full transition duration-300">
+                        <img src="./assets/search.png" alt="Search" class="h-5 w-5" />
+                    </button>
+                </div>
+            </section>
 
-
-    <!-- review section -->
-    <div class="w-full max-w-6xl mt-10 mx-auto relative">
-
-
-        <div id="scroll-container" class="flex flex-nowrap space-x-6 px-4 py-2 overflow-x-hidden will-change-transform">
-
-
-
-            <div id="scroll-track" class="flex flex-nowrap space-x-6 px-4 py-2">
+            <!-- Cards Section -->
+            <section class="flex flex-wrap gap-6 justify-center md:justify-start">
                 <!-- Card 1 -->
-                <div
-                    class="bg-white rounded-xl shadow-lg overflow-hidden min-w-[250px] transform transition duration-300 hover:scale-105">
-                    <img src="./assets/buy0srooere71.png" alt="Image 1" class="w-full h-48 object-cover" />
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Card Title 1</h3>
-                        <p class="text-gray-600">This is a description for the first card. It gives a quick overview of
-                            the
-                            content.</p>
+                <div class="w-full max-w-sm mx-auto perspective">
+                    <div class="relative w-full h-[400px] transform-style-preserve-3d card">
+                      <!-- Front Side -->
+                      <div class="absolute w-full h-full backface-hidden bg-white rounded-2xl shadow-lg overflow-hidden text-center flex flex-col items-center justify-center">
+                        <img src="https://www.iitd.ac.in/sites/default/files/logo_0.png" alt="College Image" class="h-32 w-32 object-contain mb-4" />
+                        <h2 class="text-xl font-bold text-pink-600">IIT Delhi</h2>
+                      </div>
+                  
+                      <!-- Back Side -->
+                      <div class="absolute w-full h-full backface-hidden bg-white rounded-2xl shadow-lg p-6 text-gray-800 rotate-y-180 overflow-y-auto">
+                        <!-- Name -->
+                        <h2 class="text-xl font-bold text-pink-600 mb-2">John Doe</h2>
+                  
+                        <!-- Info -->
+                        <div class="mb-2"><span class="font-semibold">College:</span> IIT Delhi</div>
+                        <div class="mb-2"><span class="font-semibold">Website:</span>
+                          <a href="https://www.iitd.ac.in" target="_blank" class="text-blue-600 hover:underline">www.iitd.ac.in</a>
+                        </div>
+                        <div class="mb-2"><span class="font-semibold">State:</span> Delhi</div>
+                        <div class="mb-2"><span class="font-semibold">Country:</span> India</div>
+                        <div class="mb-2"><span class="font-semibold">Address:</span> Hauz Khas, New Delhi, Delhi 110016</div>
+                        <div class="mb-2"><span class="font-semibold">Contact:</span> +91 9876543210</div>
+                        <div class="mb-2"><span class="font-semibold">Email:</span> john.doe@example.com</div>
+                      </div>
                     </div>
-                </div>
+                  </div>
 
-                <div
-                    class="bg-white rounded-xl shadow-lg overflow-hidden min-w-[250px] transform transition duration-300 hover:scale-105">
-                    <img src="./assets/buy0srooere71.png" alt="Image 1" class="w-full h-48 object-cover" />
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Card Title 1</h3>
-                        <p class="text-gray-600">This is a description for the first card. It gives a quick overview of
-                            the
-                            content.</p>
+
+                  <div class="w-full max-w-sm mx-auto perspective">
+                    <div class="relative w-full h-[400px] transform-style-preserve-3d card">
+                      <!-- Front Side -->
+                      <div class="absolute w-full h-full backface-hidden bg-white rounded-2xl shadow-lg overflow-hidden text-center flex flex-col items-center justify-center">
+                        <img src="https://www.iitd.ac.in/sites/default/files/logo_0.png" alt="College Image" class="h-32 w-32 object-contain mb-4" />
+                        <h2 class="text-xl font-bold text-pink-600">IIT Delhi</h2>
+                      </div>
+                  
+                      <!-- Back Side -->
+                      <div class="absolute w-full h-full backface-hidden bg-white rounded-2xl shadow-lg p-6 text-gray-800 rotate-y-180 overflow-y-auto">
+                        <!-- Name -->
+                        <h2 class="text-xl font-bold text-pink-600 mb-2">John Doe</h2>
+                  
+                        <!-- Info -->
+                        <div class="mb-2"><span class="font-semibold">College:</span> IIT Delhi</div>
+                        <div class="mb-2"><span class="font-semibold">Website:</span>
+                          <a href="https://www.iitd.ac.in" target="_blank" class="text-blue-600 hover:underline">www.iitd.ac.in</a>
+                        </div>
+                        <div class="mb-2"><span class="font-semibold">State:</span> Delhi</div>
+                        <div class="mb-2"><span class="font-semibold">Country:</span> India</div>
+                        <div class="mb-2"><span class="font-semibold">Address:</span> Hauz Khas, New Delhi, Delhi 110016</div>
+                        <div class="mb-2"><span class="font-semibold">Contact:</span> +91 9876543210</div>
+                        <div class="mb-2"><span class="font-semibold">Email:</span> john.doe@example.com</div>
+                      </div>
                     </div>
-                </div>
+                  </div>
 
-                <div
-                    class="bg-white rounded-xl shadow-lg overflow-hidden min-w-[250px] transform transition duration-300 hover:scale-105">
-                    <img src="./assets/buy0srooere71.png" alt="Image 1" class="w-full h-48 object-cover" />
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Card Title 1</h3>
-                        <p class="text-gray-600">This is a description for the first card. It gives a quick overview of
-                            the
-                            content.</p>
-                    </div>
-                </div>
-
-                <div
-                    class="bg-white rounded-xl shadow-lg overflow-hidden min-w-[250px] transform transition duration-300 hover:scale-105">
-                    <img src="./assets/buy0srooere71.png" alt="Image 1" class="w-full h-48 object-cover" />
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Card Title 1</h3>
-                        <p class="text-gray-600">This is a description for the first card. It gives a quick overview of
-                            the
-                            content.</p>
-                    </div>
-                </div>
-
-                <div
-                    class="bg-white rounded-xl shadow-lg overflow-hidden min-w-[250px] transform transition duration-300 hover:scale-105">
-                    <img src="./assets/buy0srooere71.png" alt="Image 1" class="w-full h-48 object-cover" />
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Card Title 1</h3>
-                        <p class="text-gray-600">This is a description for the first card. It gives a quick overview of
-                            the
-                            content.</p>
-                    </div>
-                </div>
-
-                <div
-                    class="bg-white rounded-xl shadow-lg overflow-hidden min-w-[250px] transform transition duration-300 hover:scale-105">
-                    <img src="./assets/buy0srooere71.png" alt="Image 1" class="w-full h-48 object-cover" />
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Card Title 1</h3>
-                        <p class="text-gray-600">This is a description for the first card. It gives a quick overview of
-                            the
-                            content.</p>
-                    </div>
-                </div>
-
-                <div
-                    class="bg-white rounded-xl shadow-lg overflow-hidden min-w-[250px] transform transition duration-300 hover:scale-105">
-                    <img src="./assets/buy0srooere71.png" alt="Image 1" class="w-full h-48 object-cover" />
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Card Title 1</h3>
-                        <p class="text-gray-600">This is a description for the first card. It gives a quick overview of
-                            the
-                            content.</p>
-                    </div>
-                </div>
-
-                <div
-                    class="bg-white rounded-xl shadow-lg overflow-hidden min-w-[250px] transform transition duration-300 hover:scale-105">
-                    <img src="./assets/buy0srooere71.png" alt="Image 1" class="w-full h-48 object-cover" />
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Card Title 1</h3>
-                        <p class="text-gray-600">This is a description for the first card. It gives a quick overview of
-                            the
-                            content.</p>
-                    </div>
-                </div>
-
-                <div
-                    class="bg-white rounded-xl shadow-lg overflow-hidden min-w-[250px] transform transition duration-300 hover:scale-105">
-                    <img src="./assets/buy0srooere71.png" alt="Image 1" class="w-full h-48 object-cover" />
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Card Title 1000</h3>
-                        <p class="text-gray-600">This is a description for the first card. It gives a quick overview of
-                            the
-                            content.</p>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-        <!-- <div class="w-full flex justify-center mt-6">
-            <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-full shadow-lg transition duration-300">
-                Add Review
-            </button>
-        </div> -->
+                
+            </section>
+        </main>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 p-4 max-w-[85%] mx-auto">
-        <div class="bg-white shadow-md rounded-xl p-4">
-            <h2 class="text-xl font-semibold mb-2">Title 1</h2>
-            <p class="text-gray-600">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis nesciunt ut debitis
-                harum odit vitae non hic repudiandae natus quos beatae architecto molestias dolores nobis magni,
-                asperiores ea aut eveniet nam reiciendis doloribus cum?</p>
-        </div>
-
-        <div class="bg-white shadow-md rounded-xl p-4">
-            <h2 class="text-xl font-semibold mb-2">Title 2</h2>
-            <p class="text-gray-600">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis nesciunt ut debitis
-                harum odit vitae non hic repudiandae natus quos beatae architecto molestias dolores nobis magni,
-                asperiores ea aut eveniet nam reiciendis doloribus cum?</p>
-        </div>
-
-        <div class="bg-white shadow-md rounded-xl p-4">
-            <h2 class="text-xl font-semibold mb-2">Title 3</h2>
-            <p class="text-gray-600">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis nesciunt ut debitis
-                harum odit vitae non hic repudiandae natus quos beatae architecto molestias dolores nobis magni,
-                asperiores ea aut eveniet nam reiciendis doloribus cum?</p>
-        </div>
-        <div class="bg-white shadow-md rounded-xl p-4">
-            <h2 class="text-xl font-semibold mb-2">Title 1</h2>
-            <p class="text-gray-600">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem officia amet
-                maxime, iure vero exercitationem aspernatur esse facilis harum labore ipsum, voluptatem adipisci atque,
-                commodi voluptatum recusandae quos enim. Sunt libero consequatur deleniti sequi!</p>
-        </div>
-
-        <div class="bg-white shadow-md rounded-xl p-4">
-            <h2 class="text-xl font-semibold mb-2">Title 2</h2>
-            <p class="text-gray-600">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem officia amet
-                maxime, iure vero exercitationem aspernatur esse facilis harum labore ipsum, voluptatem adipisci atque,
-                commodi voluptatum recusandae quos enim. Sunt libero consequatur deleniti sequi!</p>
-        </div>
-
-        <div class="bg-white shadow-md rounded-xl p-4">
-            <h2 class="text-xl font-semibold mb-2">Title 3</h2>
-            <p class="text-gray-600">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem officia amet
-                maxime, iure vero exercitationem aspernatur esse facilis harum labore ipsum, voluptatem adipisci atque,
-                commodi voluptatum recusandae quos enim. Sunt libero consequatur deleniti sequi!</p>
-        </div>
 
 
-    </div>
+    <script src="../animation.js"></script>
 
-    <!-- <script>
-        const scrollContainer = document.getElementById("scroll-container");
-
-        // Clone all cards for seamless loop
-        scrollContainer.innerHTML += scrollContainer.innerHTML;
-
-        let scrollSpeed = 1;
-
-        function autoScroll() {
-            // If we've scrolled to the end of the first set of cards
-            if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth / 2) {
-                scrollContainer.scrollLeft = 0;
-            } else {
-                scrollContainer.scrollLeft += scrollSpeed;
-            }
-        }
-
-        let autoScrollInterval = setInterval(autoScroll, 20); // adjust speed with interval or scrollSpeed
-
-        // Pause on hover
-        scrollContainer.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
-        scrollContainer.addEventListener('mouseleave', () => {
-            autoScrollInterval = setInterval(autoScroll, 20);
-        });
-    </script> -->
-
-    <script>
-        const track = document.getElementById("scroll-track");
-        const cards = [...track.children];
-        const totalCards = cards.length;
-
-        for (let i = 0; i < totalCards; i++) {
-            track.appendChild(cards[i].cloneNode(true));
-        }
-
-        gsap.to("#scroll-track", {
-            xPercent: -50,
-            ease: "none",
-            duration: 20,
-            repeat: -1
-        });
-
-        track.addEventListener("mouseenter", () => gsap.globalTimeline.pause());
-        track.addEventListener("mouseleave", () => gsap.globalTimeline.resume());
-
-    </script>
-
-
-
-
-    <script src="../script.js"></script>
 
 </body>
 
