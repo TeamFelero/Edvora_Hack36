@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Recommender</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    input, label { display: block; margin: 10px 0; }
+    button { margin-top: 10px; }
+    .college { border: 1px solid #ccc; padding: 10px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h1>College Recommender</h1>
+  <form id="prefForm">
+    <label>Stream: <input type="text" id="stream" value="Engineering"></label>
+    <label>State: <input type="text" id="state"></label>
+    <label>Max Fee: <input type="number" id="maxFee"></label>
+
+    <label>Placement Priority (1-10): <input type="number" id="placement" value="5"></label>
+    <label>Infrastructure Priority (1-10): <input type="number" id="infrastructure" value="5"></label>
+    <label>Faculty Priority (1-10): <input type="number" id="faculty" value="5"></label>
+    <label>Academic Priority (1-10): <input type="number" id="academic" value="5"></label>
+
+    <button type="submit">Find Colleges</button>
+  </form>
+
+  <div id="results"></div>
+
+  <script>
+    document.getElementById('prefForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = {
+        stream: document.getElementById('stream').value,
+        state: document.getElementById('state').value,
+        maxFee: document.getElementById('maxFee').value,
+        preferences: {
+          placement: +document.getElementById('placement').value,
+          infrastructure: +document.getElementById('infrastructure').value,
+          faculty: +document.getElementById('faculty').value,
+          academic: +document.getElementById('academic').value
+        }
+      };
+
+      const res = await fetch('/api/recommend', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      const colleges = await res.json();
+      const resultDiv = document.getElementById('results');
+      resultDiv.innerHTML = '<h2>Top Colleges</h2>' + colleges.map(college => `
+        <div class="college">
+          <h3>${college.College_Name}</h3>
+          <p>${college.State} | ${college.Stream}</p>
+          <p>UG Fee: ₹${college.UG_fee} | Rating: ${college.Rating}</p>
+          <p>Placement: ${college.Placement} | Infra: ${college.Infrastructure} | Faculty: ${college.Faculty} | Academic: ${college.Academic}</p>
+          <p><strong>Score:</strong> ${college.score.toFixed(2)}</p>
+        </div>
+      `).join('');
+    });
+  </script>
+</body>
+</html>
