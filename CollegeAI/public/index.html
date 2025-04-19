@@ -5,49 +5,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>College Recommender</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; background-color: #f9fafb; }
-    .college { border: 1px solid #ccc; padding: 10px; margin-top: 10px; border-radius: 8px; background-color: white; }
-  </style>
 </head>
 <body>
-  <h1 class="text-3xl font-bold text-center mb-8">College Recommender</h1>
-  <form id="prefForm" class="space-y-6">
-    <label class="block text-lg font-medium text-gray-700">Stream:
-      <input type="text" id="stream" value="Engineering" class="mt-1 p-2 border border-gray-300 rounded-md w-full" />
+  <h1 class="text-4xl font-bold text-center text-gray-800 mb-8">College Recommender</h1>
+
+<form id="prefForm" class="max-w-5xl mx-auto p-6 rounded-xl shadow-md space-y-6">
+  <!-- First row: Stream, State, Max Fee -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <label class="flex flex-col text-sm font-medium text-gray-700">
+      Stream:
+      <input type="text" id="stream" value="Engineering" class="mt-1 p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" />
     </label>
-    
-    <label class="block text-lg font-medium text-gray-700">State:
-      <input type="text" id="state" class="mt-1 p-2 border border-gray-300 rounded-md w-full" />
+
+    <label class="flex flex-col text-sm font-medium text-gray-700">
+      State:
+      <input type="text" id="state" class="mt-1 p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" />
     </label>
-    
-    <label class="block text-lg font-medium text-gray-700">Max Fee:
-      <input type="number" id="maxFee" class="mt-1 p-2 border border-gray-300 rounded-md w-full" />
+
+    <label class="flex flex-col text-sm font-medium text-gray-700">
+      Max Fee:
+      <input type="number" id="maxFee" class="mt-1 p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" />
     </label>
-  
-    <label class="block text-lg font-medium text-gray-700">Placement Priority (1-10):
-      <input type="number" id="placement" value="5" class="mt-1 p-2 border border-gray-300 rounded-md w-full" />
+  </div>
+
+  <!-- Second row: Priorities -->
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+    <label class="flex flex-col text-sm font-medium text-gray-700">
+      Placement Priority (1-10):
+      <input type="number" id="placement" value="5" class="mt-1 p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" />
     </label>
-    
-    <label class="block text-lg font-medium text-gray-700">Infrastructure Priority (1-10):
-      <input type="number" id="infrastructure" value="5" class="mt-1 p-2 border border-gray-300 rounded-md w-full" />
+
+    <label class="flex flex-col text-sm font-medium text-gray-700">
+      Infrastructure Priority (1-10):
+      <input type="number" id="infrastructure" value="5" class="mt-1 p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" />
     </label>
-    
-    <label class="block text-lg font-medium text-gray-700">Faculty Priority (1-10):
-      <input type="number" id="faculty" value="5" class="mt-1 p-2 border border-gray-300 rounded-md w-full" />
+
+    <label class="flex flex-col text-sm font-medium text-gray-700">
+      Faculty Priority (1-10):
+      <input type="number" id="faculty" value="5" class="mt-1 p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" />
     </label>
-    
-    <label class="block text-lg font-medium text-gray-700">Academic Priority (1-10):
-      <input type="number" id="academic" value="5" class="mt-1 p-2 border border-gray-300 rounded-md w-full" />
+
+    <label class="flex flex-col text-sm font-medium text-gray-700">
+      Academic Priority (1-10):
+      <input type="number" id="academic" value="5" class="mt-1 p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" />
     </label>
-  
-    <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600">Find Colleges</button>
-  </form>
-  
-  <div id="results" class="mt-8"></div>
-  
-  
-  
+  </div>
+
+  <!-- Submit button -->
+  <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-md font-semibold hover:bg-blue-700 transition-all">
+    🔍 Find Colleges
+  </button>
+</form>
+
+<div id="results" class="max-w-5xl mx-auto mt-8"></div>
+
 
   <script>
     document.getElementById('prefForm').addEventListener('submit', async (e) => {
