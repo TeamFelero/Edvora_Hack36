@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+</head>
+
+<body class="bg-amber-400 ">
+    <!-- index.html or inside your React component -->
+    <nav class="bg-black/20 backdrop-blur-md shadow-md top-2 left-0 right-0 z-50 rounded-3xl mx-auto max-w-[70%] mt-5">
+        <!-- changing tranparemcy -->
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <!-- Logo -->
+                <div class="flex justify-center items-center text-2xl font-bold text-blue-600">
+                    <div><img src="./logo.png" alt="" class="h-14"></div>
+                    <div>MyBrand</div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-6 items-center">
+                    <a href="#" class="relative text-gray-600 hover:text-blue-600 transition duration-300 font-medium before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-0.5 before:bg-blue-600 hover:before:w-full before:transition-all before:duration-300">Home</a>
+                    <a href="#" class="relative text-gray-600 hover:text-blue-600 transition duration-300 font-medium before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-0.5 before:bg-blue-600 hover:before:w-full before:transition-all before:duration-300">About</a>
+                    <a href="#" class="relative text-gray-600 hover:text-blue-600 transition duration-300 font-medium before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-0.5 before:bg-blue-600 hover:before:w-full before:transition-all before:duration-300">Services</a>
+                    <a href="#" class="relative text-gray-600 hover:text-blue-600 transition duration-300 font-medium before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-0.5 before:bg-blue-600 hover:before:w-full before:transition-all before:duration-300">Login</a>
+                    <a href="#" class="relative text-gray-600 hover:text-blue-600 transition duration-300 font-medium before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-0.5 before:bg-blue-600 hover:before:w-full before:transition-all before:duration-300">Find</a>
+                </div>
+
+                <!-- Mobile Hamburger -->
+                <div class="md:hidden flex items-center">
+                    <button id="menu-toggle"
+                        class="text-gray-600 hover:text-blue-600 transition duration-300 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 space-y-2 transition-all duration-300">
+            <a href="#" class="text-gray-600 hover:text-blue-600 transition duration-300">Home</a>
+            <a href="#" class="text-gray-600 hover:text-blue-600 transition duration-300">About</a>
+            <a href="#" class="text-gray-600 hover:text-blue-600 transition duration-300">Services</a>
+            <a href="#" class="text-gray-600 hover:text-blue-600 transition duration-300">Login</a>
+            <a href="#" class="text-gray-600 hover:text-blue-600 transition duration-300">Find</a>
+        </div>
+    </nav>
+
+
+    <div class="flex flex-col md:flex-row bg-white rounded-xl shadow-lg overflow-hidden max-w-[85%] mt-10 m-auto">
+
+        <!-- Image Container -->
+        <div class="w-full md:w-1/2">
+            <img id="slider-img" src="./8440594.jpg" alt="Changing Image"
+                class="w-full h-full object-cover transition duration-700 ease-in-out" />
+        </div>
+
+        <!-- Description Container -->
+        <div class="w-full md:w-1/2 p-8 flex flex-col justify-center">
+            <h2 id="image-title" class="text-2xl font-bold text-gray-800 mb-4">Title 1</h2>
+            <p id="image-desc" class="text-gray-600">This is the description for Image 1. It changes as the image
+                changes.</p>
+        </div>
+    </div>
+
+
+
+    <div class="w-full max-w-6xl mt-10 mx-auto relative">
+
+        <div id="scroll-container" class="flex flex-nowrap space-x-6 px-4 py-2 overflow-x-hidden will-change-transform">
+
+            <div id="scroll-track" class="flex flex-nowrap space-x-6 px-4 py-2">
+                <!-- Card 1 -->
+                <div
+                    class="bg-white rounded-xl shadow-lg overflow-hidden min-w-[250px] transform transition duration-300 hover:scale-105">
+                    <img src="./buy0srooere71.png" alt="Image 1" class="w-full h-48 object-cover" />
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Card Title 1</h3>
+                        <p class="text-gray-600">This is a description for the first card. It gives a quick overview of
+                            the
+                            content.</p>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white rounded-xl shadow-lg overflow-hidden min-w-[250px] transform transition duration-300 hover:scale-105">
+                    <img src="./buy0srooere71.png" alt="Image 1" class="w-full h-48 object-cover" />
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Card Title 1</h3>
+                        <p class="text-gray-600">This is a description for the first card. It gives a quick overview of
+                            the
+                            content.</p>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white rounded-xl shadow-lg overflow-hidden min-w-[250px] transform transition duration-300 hover:scale-105">
+                    <img src="./buy0srooere71.png" alt="Image 1" class="w-full h-48 object-cover" />
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Card Title 1</h3>
+                        <p class="text-gray-600">This is a description for the first card. It gives a quick overview of
+                            the
+                            content.</p>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white rounded-xl shadow-lg overflow-hidden min-w-[250px] transform transition duration-300 hover:scale-105">
+                    <img src="./buy0srooere71.png" alt="Image 1" class="w-full h-48 object-cover" />
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Card Title 1</h3>
+                        <p class="text-gray-600">This is a description for the first card. It gives a quick overview of
+                            the
+                            content.</p>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white rounded-xl shadow-lg overflow-hidden min-w-[250px] transform transition duration-300 hover:scale-105">
+                    <img src="./buy0srooere71.png" alt="Image 1" class="w-full h-48 object-cover" />
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Card Title 1</h3>
+                        <p class="text-gray-600">This is a description for the first card. It gives a quick overview of
+                            the
+                            content.</p>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white rounded-xl shadow-lg overflow-hidden min-w-[250px] transform transition duration-300 hover:scale-105">
+                    <img src="./buy0srooere71.png" alt="Image 1" class="w-full h-48 object-cover" />
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Card Title 1</h3>
+                        <p class="text-gray-600">This is a description for the first card. It gives a quick overview of
+                            the
+                            content.</p>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white rounded-xl shadow-lg overflow-hidden min-w-[250px] transform transition duration-300 hover:scale-105">
+                    <img src="./buy0srooere71.png" alt="Image 1" class="w-full h-48 object-cover" />
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Card Title 1</h3>
+                        <p class="text-gray-600">This is a description for the first card. It gives a quick overview of
+                            the
+                            content.</p>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white rounded-xl shadow-lg overflow-hidden min-w-[250px] transform transition duration-300 hover:scale-105">
+                    <img src="./buy0srooere71.png" alt="Image 1" class="w-full h-48 object-cover" />
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Card Title 1</h3>
+                        <p class="text-gray-600">This is a description for the first card. It gives a quick overview of
+                            the
+                            content.</p>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white rounded-xl shadow-lg overflow-hidden min-w-[250px] transform transition duration-300 hover:scale-105">
+                    <img src="./buy0srooere71.png" alt="Image 1" class="w-full h-48 object-cover" />
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Card Title 1000</h3>
+                        <p class="text-gray-600">This is a description for the first card. It gives a quick overview of
+                            the
+                            content.</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!-- <script>
+        const scrollContainer = document.getElementById("scroll-container");
+
+        // Clone all cards for seamless loop
+        scrollContainer.innerHTML += scrollContainer.innerHTML;
+
+        let scrollSpeed = 1;
+
+        function autoScroll() {
+            // If we've scrolled to the end of the first set of cards
+            if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth / 2) {
+                scrollContainer.scrollLeft = 0;
+            } else {
+                scrollContainer.scrollLeft += scrollSpeed;
+            }
+        }
+
+        let autoScrollInterval = setInterval(autoScroll, 20); // adjust speed with interval or scrollSpeed
+
+        // Pause on hover
+        scrollContainer.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
+        scrollContainer.addEventListener('mouseleave', () => {
+            autoScrollInterval = setInterval(autoScroll, 20);
+        });
+    </script> -->
+
+    <script>
+        const track = document.getElementById("scroll-track");
+        const cards = [...track.children];
+        const totalCards = cards.length;
+
+        for (let i = 0; i < totalCards; i++) {
+            track.appendChild(cards[i].cloneNode(true));
+        }
+
+        gsap.to("#scroll-track", {
+            xPercent: -50,
+            ease: "none",
+            duration: 20,
+            repeat: -1
+        });
+
+        track.addEventListener("mouseenter", () => gsap.globalTimeline.pause());
+        track.addEventListener("mouseleave", () => gsap.globalTimeline.resume());
+
+    </script>
+
+
+
+
+    <script src="./script.js"></script>
+
+</body>
+
+</html>
