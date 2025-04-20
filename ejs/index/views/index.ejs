@@ -1311,88 +1311,35 @@
     <script>
         document.getElementById('prefForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const resultsDiv = document.getElementById('results');
-            resultsDiv.innerHTML = '<div class="text-center py-12"><div class="inline-block animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-pink-500"></div><p class="mt-4 text-gray-600">Analyzing your preferences to find the best colleges...</p></div>';
+            const data = {
+                stream: document.getElementById('stream').value,
+                state: document.getElementById('state').value,
+                maxFee: document.getElementById('maxFee').value,
+                preferences: {
+                placement: +document.getElementById('placement').value,
+                infrastructure: +document.getElementById('infrastructure').value,
+                faculty: +document.getElementById('faculty').value,
+                academic: +document.getElementById('academic').value
+                }
+            };
 
-            // Simulate API call delay (replace with actual fetch)
-            setTimeout(() => {
-                // This is just sample data - replace with your actual API call
-                const sampleColleges = [
-                    {
-                        name: "Indian Institute of Technology (IIT)",
-                        location: "Mumbai",
-                        fee: "₹2,50,000",
-                        rating: "9.5/10",
-                        placement: "95%",
-                        matchScore: "98%",
-                        image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                    },
-                    {
-                        name: "National Institute of Technology (NIT)",
-                        location: "Delhi",
-                        fee: "₹1,80,000",
-                        rating: "8.7/10",
-                        placement: "88%",
-                        matchScore: "92%",
-                        image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                    },
-                    {
-                        name: "Birla Institute of Technology & Science (BITS)",
-                        location: "Pilani",
-                        fee: "₹3,20,000",
-                        rating: "9.1/10",
-                        placement: "90%",
-                        matchScore: "89%",
-                        image: "https://images.unsplash.com/photo-1541178735493-479c1a27ed24?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                    }
-                ];
+            const res = await fetch('/api/recommend', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
 
-                resultsDiv.innerHTML = `
-                    <h3 class="text-2xl font-bold text-gray-800 mb-6 col-span-3">Recommended Colleges For You</h3>
-                    ${sampleColleges.map(college => `
-                    <div class="college-card bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all">
-                        <div class="h-48 overflow-hidden">
-                            <img src="${college.image}" alt="${college.name}" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <div class="flex justify-between items-start mb-3">
-                                <h3 class="text-xl font-bold text-gray-800">${college.name}</h3>
-                                <span class="bg-gradient-to-r from-green-400 to-blue-500 text-white text-xs font-bold px-2.5 py-0.5 rounded-full">
-                                    ${college.matchScore} Match
-                                </span>
-                            </div>
-                            <p class="text-gray-600 mb-4">${college.location}</p>
-                            
-                            <div class="grid grid-cols-2 gap-4 mb-5">
-                                <div>
-                                    <p class="text-sm text-gray-500">Annual Fee</p>
-                                    <p class="font-semibold">${college.fee}</p>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-500">Rating</p>
-                                    <p class="font-semibold flex items-center">
-                                        ${college.rating}
-                                        <span class="ml-1 text-yellow-400">★</span>
-                                    </p>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-500">Placement</p>
-                                    <p class="font-semibold">${college.placement}</p>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-500">Stream</p>
-                                    <p class="font-semibold">Engineering</p>
-                                </div>
-                            </div>
-                            
-                            <button class="w-full py-2.5 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-lg font-medium hover:from-pink-600 hover:to-purple-600 transition-colors">
-                                View Details
-                            </button>
-                        </div>
-                    </div>
-                    `).join('')}
-                `;
-            }, 2000);
+            const colleges = await res.json();
+            const resultDiv = document.getElementById('results');
+            resultDiv.innerHTML = '<h2>Top Colleges</h2>' + colleges.map(college => `
+                <div class="college">
+                <h3>${college.College_Name}</h3>
+                <p>${college.State} | ${college.Stream}</p>
+                <p>UG Fee: ₹${college.UG_fee} | Rating: ${college.Rating}</p>
+                <p>Placement: ${college.Placement} | Infra: ${college.Infrastructure} | Faculty: ${college.Faculty} | Academic: ${college.Academic}</p>
+                <p><strong>Score:</strong> ${college.score.toFixed(2)}</p>
+                </div>
+            `).join('');
         });
     </script>
 
