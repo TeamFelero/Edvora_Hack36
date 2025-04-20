@@ -5,121 +5,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Leapp for Colleges</title>
-    <link rel="stylesheet" href="style.css">
     <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <style>
-        .nav-link {
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-link:hover {
-            transform: translateY(-2px);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: #ec4899;
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .college-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-origin: center;
-        }
-
-        .college-card:hover {
-            transform: translateY(-4px) scale(1.01);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-
-        .review-card {
-            transition: all 0.3s ease;
-        }
-
-        .review-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-
-        /* Add these styles */
-        .transition-all {
-            transition: all 0.5s ease-in-out;
-        }
-
-        .sidebar {
-            transform: translateX(-100%);
-        }
-
-        .sidebar.open {
-            transform: translateX(0);
-        }
-
-        .main-content {
-            transform: translateX(0);
-        }
-
-        .main-content.collapsed {
-            transform: translateX(100%);
-        }
-
-        .about-content {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            pointer-events: none;
-            z-index: 10;
-            transition: opacity 0.3s ease;
-        }
-
-        .about-content.open {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        #main-content, #about-content {
-        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    #main-content {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    
-    #main-content.hidden {
-        transform: translateX(-20px);
-        opacity: 0;
-        position: absolute;
-        pointer-events: none;
-    }
-    
-    #about-content {
-        transform: translateX(20px);
-        opacity: 0;
-        position: absolute;
-    }
-    
-    #about-content:not(.hidden) {
-        transform: translateX(0);
-        opacity: 1;
-        position: relative;
-    }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="m-0 font-sans bg-gradient-to-r from-[#121212] to-[#1e1e1e] text-white">
@@ -145,9 +36,11 @@
                     <span
                         class="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-400 transition-all duration-300 group-hover:w-full"></span>
                 </a>
-                <a href="#" class="nav-link text-white/90 hover:text-white text-lg font-medium relative group about-link">
+                <a href="#"
+                    class="nav-link text-white/90 hover:text-white text-lg font-medium relative group about-link">
                     About
-                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-400 transition-all duration-300 group-hover:w-full"></span>
+                    <span
+                        class="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-400 transition-all duration-300 group-hover:w-full"></span>
                 </a>
                 <a href="./loginSignup.html"
                     class="nav-link px-5 py-2 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 text-white font-medium hover:from-pink-600 hover:to-purple-700 transition-all shadow-lg hover:shadow-pink-500/30">
@@ -176,8 +69,10 @@
                     class="w-1.5 h-1.5 bg-pink-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                 Home
             </a>
-            <a href="#" class="nav-link text-white py-3 px-5 rounded-lg hover:bg-white/10 transition-all flex items-center group about-link">
-                <span class="w-1.5 h-1.5 bg-purple-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+            <a href="#"
+                class="nav-link text-white py-3 px-5 rounded-lg hover:bg-white/10 transition-all flex items-center group about-link">
+                <span
+                    class="w-1.5 h-1.5 bg-purple-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                 About
             </a>
             <a href="./loginSignup.html"
@@ -495,7 +390,9 @@
         </aside>
 
         <!-- Main Content -->
-        <main id="main-content" class="flex-1 bg-gray-50 text-gray-800 p-8 rounded-t-[30px] md:rounded-l-[30px] w-full shadow-inner">            <!-- Top Nav -->
+        <main id="main-content"
+            class="flex-1 bg-gray-50 text-gray-800 p-8 rounded-t-[30px] md:rounded-l-[30px] w-full shadow-inner">
+            <!-- Top Nav -->
             <header class="flex flex-wrap justify-between gap-4 mb-8">
                 <nav class="flex flex-wrap gap-4 justify-start items-center w-full">
                     <a href="#" class="px-4 py-2 rounded-full bg-pink-100 text-pink-700 font-medium shadow-sm"
@@ -845,159 +742,190 @@
                 }
             </script>
         </main>
-        <div id="about-content" class="hidden flex-1 bg-gray-50 text-gray-800 p-8 rounded-t-[30px] md:rounded-l-[30px] w-full shadow-inner overflow-y-auto">
+        <div id="about-content"
+            class="hidden flex-1 bg-gray-50 text-gray-800 p-8 rounded-t-[30px] md:rounded-l-[30px] w-full shadow-inner overflow-y-auto">
             <div class="max-w-4xl mx-auto">
-              <!-- Back Button -->
-              <button id="back-button" class="mb-8 px-6 py-3 bg-gradient-to-r from-gray-200 to-gray-300 text-gray-700 rounded-xl font-medium hover:from-gray-300 hover:to-gray-400 transition-all flex items-center gap-2 shadow-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-                </svg>
-                Back to Main
-              </button>
-          
-              <!-- About Content -->
-              <div class="bg-white p-8 md:p-10 rounded-2xl shadow-lg border border-gray-100">
-                <h1 class="text-4xl font-bold text-center mb-10 bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">About Edvora</h1>
-          
-                <!-- Problem Section -->
-                <div class="mb-12">
-                  <div class="flex items-center gap-3 mb-4">
-                    <div class="w-3 h-8 rounded-full bg-red-500"></div>
-                    <h2 class="text-2xl font-bold text-gray-800">The Problem We Solve</h2>
-                  </div>
-                  <p class="text-gray-600 leading-relaxed">
-                    Choosing the right college is one of the most important decisions in a student's life, yet the process is often overwhelming and confusing. Students struggle with:
-                  </p>
-                  <ul class="mt-4 space-y-3 pl-5">
-                    <li class="flex items-start gap-2">
-                      <span class="text-pink-500 mt-1">•</span>
-                      <span class="text-gray-600">Limited access to authentic, up-to-date information about colleges</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                      <span class="text-pink-500 mt-1">•</span>
-                      <span class="text-gray-600">Difficulty comparing colleges based on personal priorities</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                      <span class="text-pink-500 mt-1">•</span>
-                      <span class="text-gray-600">Lack of insights from current students and alumni</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                      <span class="text-pink-500 mt-1">•</span>
-                      <span class="text-gray-600">Time-consuming research across multiple sources</span>
-                    </li>
-                  </ul>
-                </div>
-          
-                <!-- Solution Section -->
-                <div class="mb-12">
-                  <div class="flex items-center gap-3 mb-4">
-                    <div class="w-3 h-8 rounded-full bg-green-500"></div>
-                    <h2 class="text-2xl font-bold text-gray-800">Our Solution</h2>
-                  </div>
-                  <p class="text-gray-600 leading-relaxed mb-4">
-                    Edvora revolutionizes college discovery by combining AI-powered recommendations with authentic student experiences:
-                  </p>
-                  <div class="grid md:grid-cols-2 gap-6 mt-6">
-                    <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
-                      <div class="text-pink-500 mb-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                        </svg>
-                      </div>
-                      <h3 class="font-bold text-lg text-gray-800 mb-2">Smart Matching</h3>
-                      <p class="text-gray-600 text-sm">Our AI analyzes your preferences to recommend colleges that truly fit your needs.</p>
-                    </div>
-                    <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
-                      <div class="text-purple-500 mb-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
-                        </svg>
-                      </div>
-                      <h3 class="font-bold text-lg text-gray-800 mb-2">Real Reviews</h3>
-                      <p class="text-gray-600 text-sm">Get honest insights from students who've been there.</p>
-                    </div>
-                    <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
-                      <div class="text-blue-500 mb-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                        </svg>
-                      </div>
-                      <h3 class="font-bold text-lg text-gray-800 mb-2">Comprehensive Data</h3>
-                      <p class="text-gray-600 text-sm">All the information you need in one place - fees, placements, facilities and more.</p>
-                    </div>
-                    <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
-                      <div class="text-indigo-500 mb-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
-                        </svg>
-                      </div>
-                      <h3 class="font-bold text-lg text-gray-800 mb-2">Live Updates</h3>
-                      <p class="text-gray-600 text-sm">Real-time information through our integrated APIs and community.</p>
-                    </div>
-                  </div>
-                </div>
-          
-                <!-- Team Section -->
-                <div class="mb-12">
-                  <div class="flex items-center gap-3 mb-6">
-                    <div class="w-3 h-8 rounded-full bg-blue-500"></div>
-                    <h2 class="text-2xl font-bold text-gray-800">Meet The Team</h2>
-                  </div>
-                  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="text-center">
-                      <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 p-1">
-                        <div class="bg-white w-full h-full rounded-full p-1">
-                          <img src="https://via.placeholder.com/128" alt="Team Member" class="w-full h-full rounded-full object-cover">
+                <!-- Back Button -->
+                <button id="back-button"
+                    class="mb-8 px-6 py-3 bg-gradient-to-r from-gray-200 to-gray-300 text-gray-700 rounded-xl font-medium hover:from-gray-300 hover:to-gray-400 transition-all flex items-center gap-2 shadow-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    Back to Main
+                </button>
+
+                <!-- About Content -->
+                <div class="bg-white p-8 md:p-10 rounded-2xl shadow-lg border border-gray-100">
+                    <h1
+                        class="text-4xl font-bold text-center mb-10 bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
+                        About Edvora</h1>
+
+                    <!-- Problem Section -->
+                    <div class="mb-12">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-3 h-8 rounded-full bg-red-500"></div>
+                            <h2 class="text-2xl font-bold text-gray-800">The Problem We Solve</h2>
                         </div>
-                      </div>
-                      <h3 class="font-bold text-lg">Yug Shah</h3>
-                      <p class="text-gray-600">20243255</p>
-                      <p class="text-sm text-pink-600 font-medium">Frontend Developer</p>
+                        <p class="text-gray-600 leading-relaxed">
+                            Choosing the right college is one of the most important decisions in a student's life, yet
+                            the process is often overwhelming and confusing. Students struggle with:
+                        </p>
+                        <ul class="mt-4 space-y-3 pl-5">
+                            <li class="flex items-start gap-2">
+                                <span class="text-pink-500 mt-1">•</span>
+                                <span class="text-gray-600">Limited access to authentic, up-to-date information about
+                                    colleges</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-pink-500 mt-1">•</span>
+                                <span class="text-gray-600">Difficulty comparing colleges based on personal
+                                    priorities</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-pink-500 mt-1">•</span>
+                                <span class="text-gray-600">Lack of insights from current students and alumni</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-pink-500 mt-1">•</span>
+                                <span class="text-gray-600">Time-consuming research across multiple sources</span>
+                            </li>
+                        </ul>
                     </div>
-                    <!-- Repeat for other team members -->
-                    <div class="text-center">
-                      <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-r from-blue-500 to-teal-400 p-1">
-                        <div class="bg-white w-full h-full rounded-full p-1">
-                          <img src="https://via.placeholder.com/128" alt="Team Member" class="w-full h-full rounded-full object-cover">
+
+                    <!-- Solution Section -->
+                    <div class="mb-12">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-3 h-8 rounded-full bg-green-500"></div>
+                            <h2 class="text-2xl font-bold text-gray-800">Our Solution</h2>
                         </div>
-                      </div>
-                      <h3 class="font-bold text-lg">Neel Mendapara</h3>
-                      <p class="text-gray-600">20243175</p>
-                      <p class="text-sm text-blue-600 font-medium">Backend Developer</p>
-                    </div>
-                    <div class="text-center">
-                      <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-r from-purple-500 to-indigo-600 p-1">
-                        <div class="bg-white w-full h-full rounded-full p-1">
-                          <img src="https://via.placeholder.com/128" alt="Team Member" class="w-full h-full rounded-full object-cover">
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Edvora revolutionizes college discovery by combining AI-powered recommendations with
+                            authentic student experiences:
+                        </p>
+                        <div class="grid md:grid-cols-2 gap-6 mt-6">
+                            <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+                                <div class="text-pink-500 mb-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                                    </svg>
+                                </div>
+                                <h3 class="font-bold text-lg text-gray-800 mb-2">Smart Matching</h3>
+                                <p class="text-gray-600 text-sm">Our AI analyzes your preferences to recommend colleges
+                                    that truly fit your needs.</p>
+                            </div>
+                            <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+                                <div class="text-purple-500 mb-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                                    </svg>
+                                </div>
+                                <h3 class="font-bold text-lg text-gray-800 mb-2">Real Reviews</h3>
+                                <p class="text-gray-600 text-sm">Get honest insights from students who've been there.
+                                </p>
+                            </div>
+                            <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+                                <div class="text-blue-500 mb-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                    </svg>
+                                </div>
+                                <h3 class="font-bold text-lg text-gray-800 mb-2">Comprehensive Data</h3>
+                                <p class="text-gray-600 text-sm">All the information you need in one place - fees,
+                                    placements, facilities and more.</p>
+                            </div>
+                            <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+                                <div class="text-indigo-500 mb-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                                    </svg>
+                                </div>
+                                <h3 class="font-bold text-lg text-gray-800 mb-2">Live Updates</h3>
+                                <p class="text-gray-600 text-sm">Real-time information through our integrated APIs and
+                                    community.</p>
+                            </div>
                         </div>
-                      </div>
-                      <h3 class="font-bold text-lg">Yagnik Chavda</h3>
-                      <p class="text-gray-600">20243081</p>
-                      <p class="text-sm text-purple-600 font-medium">UI/UX Designer</p>
                     </div>
-                    <div class="text-center">
-                      <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-r from-green-500 to-emerald-600 p-1">
-                        <div class="bg-white w-full h-full rounded-full p-1">
-                          <img src="https://via.placeholder.com/128" alt="Team Member" class="w-full h-full rounded-full object-cover">
+
+                    <!-- Team Section -->
+                    <div class="mb-12">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-3 h-8 rounded-full bg-blue-500"></div>
+                            <h2 class="text-2xl font-bold text-gray-800">Meet The Team</h2>
                         </div>
-                      </div>
-                      <h3 class="font-bold text-lg">Bhargav Miyani</h3>
-                      <p class="text-gray-600">20247029</p>
-                      <p class="text-sm text-green-600 font-medium">Full Stack Developer</p>
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div class="text-center">
+                                <div
+                                    class="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 p-1">
+                                    <div class="bg-white w-full h-full rounded-full p-1">
+                                        <img src="https://via.placeholder.com/128" alt="Team Member"
+                                            class="w-full h-full rounded-full object-cover">
+                                    </div>
+                                </div>
+                                <h3 class="font-bold text-lg">Yug Shah</h3>
+                                <p class="text-gray-600">20243255</p>
+                                <p class="text-sm text-pink-600 font-medium">Frontend Developer</p>
+                            </div>
+                            <!-- Repeat for other team members -->
+                            <div class="text-center">
+                                <div
+                                    class="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-r from-blue-500 to-teal-400 p-1">
+                                    <div class="bg-white w-full h-full rounded-full p-1">
+                                        <img src="https://via.placeholder.com/128" alt="Team Member"
+                                            class="w-full h-full rounded-full object-cover">
+                                    </div>
+                                </div>
+                                <h3 class="font-bold text-lg">Neel Mendapara</h3>
+                                <p class="text-gray-600">20243175</p>
+                                <p class="text-sm text-blue-600 font-medium">Backend Developer</p>
+                            </div>
+                            <div class="text-center">
+                                <div
+                                    class="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-r from-purple-500 to-indigo-600 p-1">
+                                    <div class="bg-white w-full h-full rounded-full p-1">
+                                        <img src="https://via.placeholder.com/128" alt="Team Member"
+                                            class="w-full h-full rounded-full object-cover">
+                                    </div>
+                                </div>
+                                <h3 class="font-bold text-lg">Yagnik Chavda</h3>
+                                <p class="text-gray-600">20243081</p>
+                                <p class="text-sm text-purple-600 font-medium">UI/UX Designer</p>
+                            </div>
+                            <div class="text-center">
+                                <div
+                                    class="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-r from-green-500 to-emerald-600 p-1">
+                                    <div class="bg-white w-full h-full rounded-full p-1">
+                                        <img src="https://via.placeholder.com/128" alt="Team Member"
+                                            class="w-full h-full rounded-full object-cover">
+                                    </div>
+                                </div>
+                                <h3 class="font-bold text-lg">Bhargav Miyani</h3>
+                                <p class="text-gray-600">20247029</p>
+                                <p class="text-sm text-green-600 font-medium">Full Stack Developer</p>
+                            </div>
+                        </div>
                     </div>
-                  </div>
+
+                    <!-- Call to Action -->
+                    <div class="text-center mt-16">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Ready to find your perfect college?</h3>
+                        <button id="back-to-main"
+                            class="px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl font-bold hover:from-pink-600 hover:to-purple-700 transition-all shadow-lg">
+                            Start Exploring Now
+                        </button>
+                    </div>
                 </div>
-          
-                <!-- Call to Action -->
-                <div class="text-center mt-16">
-                  <h3 class="text-xl font-bold text-gray-800 mb-4">Ready to find your perfect college?</h3>
-                  <button id="back-to-main" class="px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl font-bold hover:from-pink-600 hover:to-purple-700 transition-all shadow-lg">
-                    Start Exploring Now
-                  </button>
-                </div>
-              </div>
             </div>
-          </div>
+        </div>
     </div>
 
     <!-- All your existing JavaScript remains exactly the same -->
@@ -1420,42 +1348,86 @@
         }
     </script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const mainContent = document.getElementById('main-content');
-        const aboutContent = document.getElementById('about-content');
-        
-        // Show About Section
-        document.querySelectorAll('.about-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // First hide main content
-                mainContent.classList.add('hidden');
-                
-                // After main content hides, show about content
-                setTimeout(() => {
-                    aboutContent.classList.remove('hidden');
-                }, 250); // Matches the transition duration
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const mainContent = document.getElementById('main-content');
+            const aboutContent = document.getElementById('about-content');
+
+            // Show About Section
+            document.querySelectorAll('.about-link').forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // First hide main content
+                    mainContent.classList.add('hidden');
+
+                    // After main content hides, show about content
+                    setTimeout(() => {
+                        aboutContent.classList.remove('hidden');
+                    }, 250); // Matches the transition duration
+                });
+            });
+
+            // Back buttons
+            document.querySelectorAll('#back-button, #back-to-main').forEach(button => {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // First hide about content
+                    aboutContent.classList.add('hidden');
+
+                    // After about content hides, show main content
+                    setTimeout(() => {
+                        mainContent.classList.remove('hidden');
+                    }, 250); // Matches the transition duration
+                });
             });
         });
-        
-        // Back buttons
-        document.querySelectorAll('#back-button, #back-to-main').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // First hide about content
-                aboutContent.classList.add('hidden');
-                
-                // After about content hides, show main content
-                setTimeout(() => {
-                    mainContent.classList.remove('hidden');
-                }, 250); // Matches the transition duration
-            });
-        });
-    });
-</script>
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- animation  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <script src="../animation.js"></script>
 </body>
