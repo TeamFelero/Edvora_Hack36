@@ -419,10 +419,9 @@
 
         <!-- Sidebar -->
         <aside class="w-full md:w-[400px] p-8 md:p-12 bg-gradient-to-b from-black to-gray-900">
-            <h1 class="text-xl text-white mb-4 font-mono tracking-wider">EDVORA</h1>
             <h2 class="text-4xl text-gray-300 leading-snug font-bold">
                 Find<br>Suitable <span class="text-gray-400">Collage</span><br>
-                <strong class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">From
+                <strong class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">with
                     AI</strong>
             </h2>
             <p class="text-gray-400 mt-6 mb-8 leading-relaxed">
@@ -1305,13 +1304,21 @@
             const colleges = await res.json();
             const resultDiv = document.getElementById('results');
             resultDiv.innerHTML = '<h2>Top Colleges</h2>' + colleges.map(college => `
-                <div class="college">
-                <h3>${college.College_Name}</h3>
-                <p>${college.State} | ${college.Stream}</p>
-                <p>UG Fee: ₹${college.UG_fee} | Rating: ${college.Rating}</p>
-                <p>Placement: ${college.Placement} | Infra: ${college.Infrastructure} | Faculty: ${college.Faculty} | Academic: ${college.Academic}</p>
-                <p><strong>Score:</strong> ${college.score.toFixed(2)}</p>
-                </div>
+                <div class="college bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-6 mb-6 transition-transform duration-300 hover:scale-[1.02] hover:shadow-2xl border border-gray-200">
+  <h3 class="text-xl font-bold text-pink-600 mb-2">${college.College_Name}</h3>
+  <p class="text-gray-700 mb-1">${college.State} | ${college.Stream}</p>
+  <p class="text-gray-700 mb-1">UG Fee: ₹${college.UG_fee} | Rating: ${college.Rating}</p>
+  <p class="text-gray-700 mb-1">
+    Placement: ${college.Placement} |
+    Infra: ${college.Infrastructure} |
+    Faculty: ${college.Faculty} |
+    Academic: ${college.Academic}
+  </p>
+  <p class="text-gray-800 font-semibold mt-2">
+    <strong>Score:</strong> ${college.score.toFixed(2)}
+  </p>
+</div>
+
             `).join('');
         });
     </script>
