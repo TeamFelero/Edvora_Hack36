@@ -1,5 +1,3 @@
-// ➕ MODIFIED LINES are marked with '//!'
-
 import express from "express";
 import mongoose from "mongoose";
 import multer from "multer";
@@ -70,6 +68,7 @@ const User = mongoose.model("User", UserSchema);
 
 const reviewSchema = new mongoose.Schema({
   username: String,
+  institute: String,
   subject: String,
   review: String,
   createdAt: { type: Date, default: Date.now }
@@ -359,8 +358,8 @@ app.get("/review", (req, res) => {
 
 app.post("/subRev", async (req, res) => {
   try {
-    const { username, subject, review } = req.body;
-    const newReview = new Review({ username, subject, review });
+    const { username, institute, subject, review } = req.body;
+    const newReview = new Review({ username, institute, subject, review });
     await newReview.save();
     res.render("review");
   } catch (error) {
